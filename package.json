@@ -1,0 +1,24 @@
+{
+  "name": "unitarmerchhouse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node backend/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ishakmohmed/IN-PROGRESS.git"
+  },
+  "keywords": [],
+  "author": "Mohmed Ishak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ishakmohmed/IN-PROGRESS/issues"
+  },
+  "homepage": "https://github.com/ishakmohmed/IN-PROGRESS#readme"
+}

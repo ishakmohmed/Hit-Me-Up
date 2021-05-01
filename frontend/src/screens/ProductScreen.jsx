@@ -10,8 +10,10 @@ function ProductScreen({ match }) {
     <>
       <Link to="/">
         <i
-          style={{ fontSize: "2rem", color: "#113537" }}
-          className="fas fa-arrow-circle-left"
+          style={{
+            fontSize: "2rem",
+          }}
+          className="back-button fas fa-arrow-circle-left"
         ></i>
       </Link>
       <Row
@@ -32,7 +34,7 @@ function ProductScreen({ match }) {
             }}
           />
         </Col>
-        <Col md={3}>
+        <Col md={4}>
           <ListGroup variant="flush">
             <ListGroup.Item>
               <h4>{product.name}</h4>
@@ -48,7 +50,7 @@ function ProductScreen({ match }) {
                 color: "white",
                 margin: "1rem 0",
                 padding: "1rem",
-                background: "#113537",
+                background: "#B80C09",
                 borderRadius: "10px",
                 textAlign: "center",
               }}
@@ -68,7 +70,7 @@ function ProductScreen({ match }) {
             </ListGroup.Item>
           </ListGroup>
         </Col>
-        <Col md={3}>
+        <Col md={4}>
           <Card>
             <ListGroup variant="flush" style={{ borderRadius: "10px" }}>
               <ListGroup.Item style={{ background: "#141B41", color: "white" }}>
@@ -77,7 +79,7 @@ function ProductScreen({ match }) {
                     <strong>Price:</strong>
                   </Col>
                   <Col>
-                    <strong>${product.price}</strong>
+                    <strong>RM {product.price}</strong>
                   </Col>
                 </Row>
               </ListGroup.Item>
@@ -103,7 +105,11 @@ function ProductScreen({ match }) {
                   className="btn-block"
                   type="button"
                   disabled={product.countInStock === 0}
-                  style={{ background: "#306BAC", border: "none" }}
+                  style={{
+                    background: "#F45B69",
+                    border: "none",
+                    borderRadius: "5px",
+                  }}
                 >
                   Add To Cart
                 </Button>
