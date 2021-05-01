@@ -14,7 +14,7 @@ function ProductScreen({ match }) {
     };
 
     getProduct();
-  }, []);
+  }, [match]);
 
   return (
     <>
