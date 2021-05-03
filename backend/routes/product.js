@@ -19,8 +19,8 @@ router.get(
 
     if (product) res.json(product);
     else {
-      res.status(404).json({ message: "Product not found." });
-      throw new Error("Product not found");
+      res.status(404).json({ message: "Not found." }); // if this line is disregarded, the error will be 500 by default.
+      throw new Error("Not found");
     }
   })
 );
