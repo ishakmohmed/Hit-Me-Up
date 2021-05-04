@@ -1,13 +1,23 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Image,
+  ListGroup,
+  Card,
+  Button,
+  Form,
+} from "react-bootstrap";
 import { listProductDetails } from "../actions/product";
 import Rating from "../components/Rating";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 
-function ProductScreen({ match }) {
+function ProductScreen({ match, history }) {
+  const [qty, setQty] = useState(0);
+
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -16,6 +26,10 @@ function ProductScreen({ match }) {
   useEffect(() => {
     dispatch(listProductDetails(match.params.id));
   }, [match, dispatch]);
+
+  const handleAddToCart = () => {
+    history.push(`/cart/${match.params.id}?qty=${qty}`);
+  };
 
   return (
     <>
@@ -47,6 +61,7 @@ function ProductScreen({ match }) {
               style={{
                 boxShadow:
                   "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
+                cursor: "pointer",
               }}
             />
           </Col>
@@ -120,6 +135,49 @@ function ProductScreen({ match }) {
                     </Col>
                   </Row>
                 </ListGroup.Item>
+
+                {product.countInStock > 0 && (
+                  <ListGroup.Item
+                    style={{
+                      background: "#141B41",
+                      color: "white",
+                      padding: "1rem",
+                    }}
+                  >
+                    <Row
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        margin: "1rem",
+                      }}
+                    >
+                      <strong>Amount</strong>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <Form.Control
+                          as="select"
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
+                        >
+                          {[...Array(product.countInStock).keys()].map((x) => (
+                            <option
+                              key={x + 1}
+                              value={x + 1}
+                              style={{
+                                background: "#141B41",
+                                color: "white",
+                              }}
+                            >
+                              {x + 1}
+                            </option>
+                          ))}
+                        </Form.Control>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                )}
+
                 <ListGroup.Item
                   style={{ background: "#141B41", color: "white" }}
                 >
@@ -132,6 +190,7 @@ function ProductScreen({ match }) {
                       border: "none",
                       borderRadius: "5px",
                     }}
+                    onClick={handleAddToCart}
                   >
                     Add To Cart
                   </Button>
