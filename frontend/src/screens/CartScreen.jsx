@@ -11,7 +11,7 @@ import {
   Card,
 } from "react-bootstrap";
 import Message from "../components/Message";
-import { addToCard } from "../actions/cart";
+import { addToCart } from "../actions/cart";
 
 function CartScreen({ history, location, match }) {
   const productId = match.params.id;
@@ -20,7 +20,14 @@ function CartScreen({ history, location, match }) {
 
   const dispatch = useDispatch();
 
-  
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
+  useEffect(() => {
+    if (productId) {
+      dispatch(addToCart(productId, qty));
+    }
+  }, [dispatch, productId, qty]);
 
   return <div>Cart</div>;
 }

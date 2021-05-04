@@ -66,10 +66,10 @@ function ProductScreen({ match, history }) {
           </Col>
           <Col md={4}>
             <ListGroup variant="flush">
-              <ListGroup.Item>
+              <ListGroup.Item style={{ borderBottom: "none" }}>
                 <h4>{product.name}</h4>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item style={{ borderBottom: "none" }}>
                 <Rating
                   value={product.rating}
                   text={` by ${product.numReviews} users`}
@@ -147,12 +147,10 @@ function ProductScreen({ match, history }) {
                   >
                     <Row
                       style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        margin: "1rem",
+                        margin: "1rem 0.25rem",
                       }}
                     >
-                      <strong>Amount</strong>
+                      <strong>Amount:</strong>
                     </Row>
                     <Row>
                       <Col>
@@ -163,7 +161,8 @@ function ProductScreen({ match, history }) {
                           style={{
                             background: "#141B41",
                             color: "white",
-                            border: "0.5px solid white",
+                            borderBottom: "0.5px solid white",
+                            outlineWidth: "none",
                           }}
                         >
                           {[...Array(product.countInStock).keys()].map((x) => (
