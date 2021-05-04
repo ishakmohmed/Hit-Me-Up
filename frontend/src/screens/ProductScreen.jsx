@@ -90,7 +90,7 @@ function ProductScreen({ match, history }) {
               </ListGroup.Item>
               <ListGroup.Item
                 style={{
-                  background: "black",
+                  background: "#156064",
                   color: "white",
                   borderRadius: "10px",
                   padding: "1rem",
