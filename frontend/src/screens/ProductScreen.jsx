@@ -61,7 +61,6 @@ function ProductScreen({ match, history }) {
               style={{
                 boxShadow:
                   "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
-                cursor: "pointer",
               }}
             />
           </Col>
@@ -84,6 +83,7 @@ function ProductScreen({ match, history }) {
                   background: "#B80C09",
                   borderRadius: "10px",
                   textAlign: "center",
+                  boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
                 }}
               >
                 <strong>RM {product.price}</strong>
@@ -94,7 +94,8 @@ function ProductScreen({ match, history }) {
                   color: "white",
                   borderRadius: "10px",
                   padding: "1rem",
-                  marginBottom: "0.5em",
+                  marginBottom: "0.5rem",
+                  boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
                 }}
               >
                 <strong>About:</strong> <em>{product.description}</em>
@@ -159,6 +160,11 @@ function ProductScreen({ match, history }) {
                           as="select"
                           value={qty}
                           onChange={(e) => setQty(e.target.value)}
+                          style={{
+                            background: "#141B41",
+                            color: "white",
+                            border: "0.5px solid white",
+                          }}
                         >
                           {[...Array(product.countInStock).keys()].map((x) => (
                             <option
@@ -179,7 +185,11 @@ function ProductScreen({ match, history }) {
                 )}
 
                 <ListGroup.Item
-                  style={{ background: "#141B41", color: "white" }}
+                  style={{
+                    background: "#141B41",
+                    color: "white",
+                    boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                  }}
                 >
                   <Button
                     className="btn-block"
@@ -189,6 +199,7 @@ function ProductScreen({ match, history }) {
                       background: "#F45B69",
                       border: "none",
                       borderRadius: "5px",
+                      marginBottom: "0.5rem",
                     }}
                     onClick={handleAddToCart}
                   >
