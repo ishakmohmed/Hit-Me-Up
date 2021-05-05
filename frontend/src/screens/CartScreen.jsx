@@ -29,7 +29,20 @@ function CartScreen({ history, location, match }) {
     }
   }, [dispatch, productId, qty]);
 
-  return <div>Cart</div>;
+  return (
+    <Row>
+      <Col md={8}>
+        <h1>Your Shopping Bag</h1>
+        {/* {cartItems.length === 0 ? (
+          <Message>No Items Added Yet.</Message>
+        ) : (
+          <ListGroup variant="flush">hello</ListGroup>
+        )} */}
+      </Col>
+      <Col md={2}></Col>
+      <Col md={2}></Col>
+    </Row>
+  );
 }
 
 export default CartScreen;
