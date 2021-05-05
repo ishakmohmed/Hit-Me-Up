@@ -101,16 +101,16 @@ function CartScreen({ history, location, match }) {
                         margin: "1rem 0",
                       }}
                     >
-                      {[...Array(item.countInStock).keys()].map((x) => (
+                      {[...Array(item.countInStock).keys()].map((num) => (
                         <option
-                          key={x + 1}
-                          value={x + 1}
+                          key={num + 1}
+                          value={num + 1}
                           style={{
                             background: "white",
                             color: "black",
                           }}
                         >
-                          {x + 1}
+                          {num + 1}
                         </option>
                       ))}
                     </Form.Control>
@@ -158,7 +158,10 @@ function CartScreen({ history, location, match }) {
                 )}{" "}
                 Items | RM{" "}
                 {cartItems
-                  .reduce((acc, item) => acc + item.qty * item.price, 0)
+                  .reduce(
+                    (accumulator, item) => accumulator + item.qty * item.price,
+                    0
+                  )
                   .toFixed(2)}
               </strong>
             </ListGroup.Item>
