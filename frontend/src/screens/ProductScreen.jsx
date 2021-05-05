@@ -104,7 +104,13 @@ function ProductScreen({ match, history }) {
           </Col>
           <Col md={4}>
             <Card>
-              <ListGroup variant="flush" style={{ borderRadius: "10px" }}>
+              <ListGroup
+                variant="flush"
+                style={{
+                  borderRadius: "10px",
+                  boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                }}
+              >
                 <ListGroup.Item
                   style={{ background: "#141B41", color: "white" }}
                 >
@@ -187,7 +193,6 @@ function ProductScreen({ match, history }) {
                   style={{
                     background: "#141B41",
                     color: "white",
-                    boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
                   }}
                 >
                   <Button
