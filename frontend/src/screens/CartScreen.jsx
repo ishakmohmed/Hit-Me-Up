@@ -11,7 +11,7 @@ import {
   Card,
 } from "react-bootstrap";
 import Message from "../components/Message";
-import { addToCart } from "../actions/cart";
+import { addToCart, removeFromCart } from "../actions/cart";
 
 function CartScreen({ history, location, match }) {
   const productId = match.params.id;
@@ -30,7 +30,7 @@ function CartScreen({ history, location, match }) {
   }, [dispatch, productId, qty]);
 
   const handleRemoveFromCart = (id) => {
-    console.log("ABCD");
+    dispatch(removeFromCart(id));
   };
 
   const handleCheckout = () => {
@@ -52,14 +52,15 @@ function CartScreen({ history, location, match }) {
               <ListGroup.Item
                 key="item.product"
                 style={{
-                  color: "white",
-                  backgroundColor: "#0A2472",
+                  color: "black",
+                  backgroundColor: "white",
                   boxShadow:
                     "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
+                  marginBottom: "1rem",
                 }}
               >
                 <Row>
-                  <Col md={2}>
+                  <Col md={2} xs={4}>
                     <Image
                       src={item.image}
                       fluid
@@ -72,7 +73,7 @@ function CartScreen({ history, location, match }) {
                   <Col md={3}>
                     <Link
                       to={`/product/${item.product}`}
-                      style={{ color: "white" }}
+                      style={{ color: "black" }}
                     >
                       <strong>{item.name}</strong>
                     </Link>
@@ -93,8 +94,8 @@ function CartScreen({ history, location, match }) {
                         // item.product is the id.
                       }
                       style={{
-                        background: "#0A2472",
-                        color: "white",
+                        background: "white",
+                        color: "black",
                         borderBottom: "0.5px solid white",
                         outlineWidth: "none",
                         margin: "1rem 0",
@@ -105,8 +106,8 @@ function CartScreen({ history, location, match }) {
                           key={x + 1}
                           value={x + 1}
                           style={{
-                            background: "#0A2472",
-                            color: "white",
+                            background: "white",
+                            color: "black",
                           }}
                         >
                           {x + 1}
@@ -119,7 +120,10 @@ function CartScreen({ history, location, match }) {
                       type="button"
                       variant="danger"
                       onClick={() => handleRemoveFromCart(item.product)}
-                      style={{ borderRadius: "10px", margin: "0.5rem" }}
+                      style={{
+                        borderRadius: "5px",
+                        margin: "0.5rem 0",
+                      }}
                     >
                       <i class="fa fa-times" aria-hidden="true"></i>
                     </Button>
