@@ -31,4 +31,12 @@ userSchema.methods.matchPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
+// following method is to hash password before storing in database.
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) next(); // so that bcrypt doesn't re-hash the password when user changes other properties like name or email but not password.
+
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
+
 export default mongoose.model("User", userSchema);
