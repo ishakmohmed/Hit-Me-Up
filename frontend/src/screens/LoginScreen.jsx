@@ -6,7 +6,6 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
 import { login } from "../actions/user";
-import backgroundImage from "../assets/background.svg";
 
 function LoginScreen({ history, location }) {
   const [email, setEmail] = useState("");
@@ -32,7 +31,6 @@ function LoginScreen({ history, location }) {
 
   return (
     <FormContainer>
-      <Image />
       <h1 style={{ textAlign: "center" }}>Login</h1>
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
@@ -87,11 +85,11 @@ function LoginScreen({ history, location }) {
           <strong>Login</strong>
         </Button>
         <Row>
-          {/* ^^ className="py-3" */}
           <Col>
             Register{" "}
             <Link
               to={redirect ? `/register?redirect=${redirect}` : "/register"}
+              style={{ textDecoration: "none" }}
             >
               <strong>here </strong>
             </Link>
