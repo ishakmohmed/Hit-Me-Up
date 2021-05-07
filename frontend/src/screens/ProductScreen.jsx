@@ -207,7 +207,7 @@ function ProductScreen({ match, history }) {
                     }}
                     onClick={handleAddToCart}
                   >
-                    Add To Cart
+                    <strong>Add To Cart</strong>
                   </Button>
                 </ListGroup.Item>
               </ListGroup>

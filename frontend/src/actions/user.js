@@ -23,6 +23,8 @@ export const login = (email, password) => async (dispatch) => {
       config
     );
 
+    // data is jwt + details of user like name, etc.
+
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data,

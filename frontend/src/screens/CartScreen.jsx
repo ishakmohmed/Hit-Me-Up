@@ -178,7 +178,7 @@ function CartScreen({ history, location, match }) {
                   marginBottom: "0.5rem",
                 }}
               >
-                Checkout
+                <strong>Checkout</strong>
               </Button>
             </ListGroup.Item>
           </ListGroup>
