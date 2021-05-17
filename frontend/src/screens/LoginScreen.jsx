@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Form, Button, Row, Col, Image } from "react-bootstrap";
+import { Form, Button, Row, Col } from "react-bootstrap";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
@@ -32,8 +32,8 @@ function LoginScreen({ history, location }) {
   return (
     <FormContainer>
       <h1 style={{ textAlign: "center" }}>Login</h1>
-      {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
+      {error && <Message variant="danger">{error}</Message>}
       <Form
         onSubmit={handleSubmit}
         style={{
@@ -53,7 +53,6 @@ function LoginScreen({ history, location }) {
             placeholder="abc@email.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            style={{ outlineWidth: "none" }}
           ></Form.Control>
         </Form.Group>
 
