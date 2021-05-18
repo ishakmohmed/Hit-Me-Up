@@ -16,6 +16,7 @@ function LoginScreen({ history, location }) {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
+  // this redirect is used in login and sign up screen.
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
   useEffect(() => {
@@ -43,6 +44,7 @@ function LoginScreen({ history, location }) {
           margin: "2rem",
         }}
       >
+
         <Form.Group controlId="email">
           <Form.Label>
             <strong>Email</strong>
@@ -50,7 +52,7 @@ function LoginScreen({ history, location }) {
           <Form.Control
             className="shadow-none"
             type="email"
-            placeholder="abc@email.com"
+            placeholder="masteruser@email.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           ></Form.Control>
@@ -63,12 +65,12 @@ function LoginScreen({ history, location }) {
           <Form.Control
             className="shadow-none"
             type="password"
-            placeholder="********"
+            placeholder="Masteruser975"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
+        
         <Button
           type="submit"
           variant="primary"
