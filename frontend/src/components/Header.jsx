@@ -20,7 +20,7 @@ function Header() {
       >
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand>UNITAR MerchHouse</Navbar.Brand>
+            <Navbar.Brand>+LOGO</Navbar.Brand>
           </LinkContainer>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -34,8 +34,18 @@ function Header() {
                   <i class="fas fa-shopping-bag"></i>
                 </Nav.Link>
               </LinkContainer>
+
               {userInfo ? (
-                <NavDropdown title={userInfo.name}>
+                <NavDropdown
+                  title={`${userInfo.name.substring(0, 6)}...`}
+                  style={{
+                    backgroundColor: "orange",
+                    borderRadius: "5rem",
+                    fontWeight: "bold",
+                    marginTop: "0.5rem",
+                    padding: "0 0.5rem",
+                  }}
+                >
                   <LinkContainer to="/profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
