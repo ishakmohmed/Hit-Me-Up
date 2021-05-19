@@ -39,7 +39,7 @@ function Header() {
                 <NavDropdown
                   title={`${userInfo.name.substring(0, 6)}...`}
                   style={{
-                    backgroundColor: "orange",
+                    border: "0.5px solid lightgray",
                     borderRadius: "5rem",
                     fontWeight: "bold",
                     marginTop: "0.5rem",
