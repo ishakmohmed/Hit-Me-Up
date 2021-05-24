@@ -5,16 +5,19 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
-import { login } from "../actions/user";
+import { register } from "../actions/user";
 
-function LoginScreen({ history, location }) {
+function RegisterScreen({ history, location }) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [message, setMessage] = useState(null);
 
   const dispatch = useDispatch();
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const userRegister = useSelector((state) => state.userRegister);
+  const { loading, error, userInfo } = userRegister;
 
   // this redirect is used in login and sign up screen.
   const redirect = location.search ? location.search.split("=")[1] : "/";
@@ -101,4 +104,4 @@ function LoginScreen({ history, location }) {
   );
 }
 
-export default LoginScreen;
+export default RegisterScreen;
