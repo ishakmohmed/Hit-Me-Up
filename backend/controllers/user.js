@@ -28,7 +28,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (user) {
     res.status(400);
-    throw new Error("User already exists.");
+    throw new Error("User has signed up already.");
   }
 
   // note: .create() is a syntatic sugar for the .save() method that you've always used when you were a beginner in MongoDB/Mongoose last year.

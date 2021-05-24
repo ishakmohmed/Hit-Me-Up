@@ -30,13 +30,16 @@ function RegisterScreen({ history, location }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
+
+    if (password !== passwordConfirmation) setMessage("Passwords don't match.");
+    else dispatch(register(name, email, password));
   };
 
   return (
     <FormContainer>
-      <h1 style={{ textAlign: "center" }}>Login</h1>
+      <h1 style={{ textAlign: "center" }}>Register</h1>
       {loading && <Loader />}
+      {message && <Message variant="danger">{message}</Message>}
       {error && <Message variant="danger">{error}</Message>}
       <Form
         onSubmit={handleSubmit}
@@ -47,6 +50,19 @@ function RegisterScreen({ history, location }) {
           margin: "2rem",
         }}
       >
+        <Form.Group controlId="name">
+          <Form.Label>
+            <strong>Name</strong>
+          </Form.Label>
+          <Form.Control
+            className="shadow-none"
+            type="name"
+            placeholder="John Cena"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
         <Form.Group controlId="email">
           <Form.Label>
             <strong>Email</strong>
@@ -54,7 +70,7 @@ function RegisterScreen({ history, location }) {
           <Form.Control
             className="shadow-none"
             type="email"
-            placeholder="masteruser@email.com"
+            placeholder="you@email.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           ></Form.Control>
@@ -67,9 +83,22 @@ function RegisterScreen({ history, location }) {
           <Form.Control
             className="shadow-none"
             type="password"
-            placeholder="Masteruser975"
+            placeholder="********"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId="passwordConfirmation">
+          <Form.Label>
+            <strong>Confirm Password</strong>
+          </Form.Label>
+          <Form.Control
+            className="shadow-none"
+            type="password"
+            placeholder="********"
+            value={passwordConfirmation}
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
@@ -85,13 +114,13 @@ function RegisterScreen({ history, location }) {
               "rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px",
           }}
         >
-          <strong>Login</strong>
+          <strong>Register</strong>
         </Button>
         <Row>
           <Col>
-            Register{" "}
+            Login{" "}
             <Link
-              to={redirect ? `/register?redirect=${redirect}` : "/register"}
+              to={redirect ? `/login?redirect=${redirect}` : "/login"}
               style={{ textDecoration: "none" }}
             >
               <strong>here </strong>
