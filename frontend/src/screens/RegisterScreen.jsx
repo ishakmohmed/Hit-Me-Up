@@ -23,9 +23,7 @@ function RegisterScreen({ history, location }) {
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
   useEffect(() => {
-    if (userInfo) {
-      history.push(redirect);
-    }
+    if (userInfo) history.push(redirect);
   }, [history, userInfo, redirect]);
 
   const handleSubmit = (e) => {
@@ -57,7 +55,7 @@ function RegisterScreen({ history, location }) {
           <Form.Control
             className="shadow-none"
             type="name"
-            placeholder="John Cena"
+            placeholder="Mohmed Ishak"
             value={name}
             onChange={(e) => setName(e.target.value)}
           ></Form.Control>
