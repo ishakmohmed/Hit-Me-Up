@@ -13,6 +13,6 @@ router.post("/login", authenticateUser);
 router
   .route("/profile")
   .get(protectRoute, getUserProfile)
-  .put(protect, updateUserProfile);
+  .put(protectRoute, updateUserProfile);
 
 export default router;
