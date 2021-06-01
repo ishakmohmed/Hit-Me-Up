@@ -44,7 +44,7 @@ function ProfileScreen({ history }) {
 
   return (
     <Row>
-      <Col md={3}>
+      <Col md={5}>
         <h2>Profile</h2>
         {loading && <Loader />}
         {message && <Message variant="danger">{message}</Message>}
@@ -54,8 +54,8 @@ function ProfileScreen({ history }) {
           style={{
             boxShadow:
               "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
-            padding: "2rem",
-            margin: "2rem",
+            marginTop: "2rem",
+            padding: "1rem",
           }}
         >
           <Form.Group controlId="name">
@@ -118,6 +118,7 @@ function ProfileScreen({ history }) {
               border: "none",
               borderRadius: "5px",
               margin: "1rem",
+              marginBottom: "0.5rem",
               boxShadow:
                 "rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px",
             }}
@@ -126,7 +127,7 @@ function ProfileScreen({ history }) {
           </Button>
         </Form>
       </Col>
-      <Col md={9}>
+      <Col md={7}>
         <h2>Orders</h2>
       </Col>
     </Row>

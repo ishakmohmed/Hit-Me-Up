@@ -18,7 +18,7 @@ function HomeScreen() {
 
   return (
     <>
-      <h1>New Arrivals</h1>
+      <h2>New Arrivals</h2>
       {loading ? (
         <Loader />
       ) : error ? (
