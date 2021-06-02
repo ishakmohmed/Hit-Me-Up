@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { getUserDetails } from "../actions/user";
+import { getUserDetails, updateUserProfile } from "../actions/user";
 
 function ProfileScreen({ history }) {
   const [name, setName] = useState("");
@@ -19,6 +19,9 @@ function ProfileScreen({ history }) {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
 
   useEffect(() => {
     if (!userInfo) {
@@ -38,16 +41,17 @@ function ProfileScreen({ history }) {
 
     if (password !== passwordConfirmation) setMessage("Passwords don't match.");
     else {
-      // DISPATCH UPDATE PROFILE
+      dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
 
   return (
     <Row>
       <Col md={5}>
-        <h2>Profile</h2>
+        <h2>Update Your Data</h2>
         {loading && <Loader />}
         {message && <Message variant="danger">{message}</Message>}
+        {success && <Message variant="success">Updated!</Message>}
         {error && <Message variant="danger">{error}</Message>}
         <Form
           onSubmit={handleSubmit}
@@ -55,6 +59,7 @@ function ProfileScreen({ history }) {
             boxShadow:
               "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
             marginTop: "2rem",
+            marginBottom: "2rem",
             padding: "1rem",
           }}
         >
