@@ -2,15 +2,23 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import FormContainer from "../components/FormContainer";
+import { saveShippingAddress } from "../actions/cart";
 
 function ShippingScreen({ history }) {
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [country, setCountry] = useState("");
+  const cart = useSelector((state) => state.cart);
+  const { shippingAddress } = cart;
+
+  const [address, setAddress] = useState(shippingAddress.address);
+  const [city, setCity] = useState(shippingAddress.city);
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
+  const [country, setCountry] = useState(shippingAddress.country);
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(saveShippingAddress({ address, city, postalCode, country }));
+    history.push("/payment");
   };
 
   return (
@@ -33,7 +41,7 @@ function ShippingScreen({ history }) {
             <Form.Control
               className="shadow-none"
               type="text"
-              placeholder="Mohmed Ishak"
+              placeholder="address..."
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               required
@@ -47,7 +55,7 @@ function ShippingScreen({ history }) {
             <Form.Control
               className="shadow-none"
               type="text"
-              placeholder="Mohmed Ishak"
+              placeholder="city..."
               value={city}
               onChange={(e) => setCity(e.target.value)}
               required
@@ -61,7 +69,7 @@ function ShippingScreen({ history }) {
             <Form.Control
               className="shadow-none"
               type="text"
-              placeholder="Mohmed Ishak"
+              placeholder="postal code..."
               value={postalCode}
               onChange={(e) => setPostalCode(e.target.value)}
               required
@@ -75,7 +83,7 @@ function ShippingScreen({ history }) {
             <Form.Control
               className="shadow-none"
               type="text"
-              placeholder="Mohmed Ishak"
+              placeholder="country..."
               value={country}
               onChange={(e) => setCountry(e.target.value)}
               required
