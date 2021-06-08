@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button } from "react-bootstrap";
+import ProgressiveCheckout from "../components/ProgressiveCheckout";
 import FormContainer from "../components/FormContainer";
 import { saveShippingAddress } from "../actions/cart";
 
@@ -24,6 +25,7 @@ function ShippingScreen({ history }) {
   return (
     <>
       <h2>Shipping</h2>
+      <ProgressiveCheckout step1 step2 />
       <FormContainer>
         <Form
           onSubmit={handleSubmit}
