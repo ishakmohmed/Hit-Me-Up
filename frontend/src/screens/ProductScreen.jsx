@@ -23,7 +23,7 @@ function ProductScreen({ match, history }) {
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
-  useEffect(() => {
+  useEffect(() => { 
     dispatch(listProductDetails(match.params.id));
   }, [match, dispatch]);
 

@@ -7,6 +7,7 @@ import CartScreen from "./screens/CartScreen";
 import ProductScreen from "./screens/ProductScreen";
 import ShippingScreen from "./screens/ShippingScreen";
 import LoginScreen from "./screens/LoginScreen";
+import PaymentScreen from "./screens/PaymentScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 
@@ -16,12 +17,13 @@ function App() {
       <Header />
       <main className="py-4">
         <Container>
+          <Route path="/cart/:id?" component={CartScreen} />
           <Route path="/login" component={LoginScreen} />
           <Route path="/register" component={RegisterScreen} />
+          <Route path="/payment" component={PaymentScreen} />
+          <Route path="/product/:id" component={ProductScreen} />
           <Route path="/profile" component={ProfileScreen} />
           <Route path="/shipping" component={ShippingScreen} />
-          <Route path="/product/:id" component={ProductScreen} />
-          <Route path="/cart/:id?" component={CartScreen} />
           <Route exact path="/" component={HomeScreen} />
         </Container>
       </main>

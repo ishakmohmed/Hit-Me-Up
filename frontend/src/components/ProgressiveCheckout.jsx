@@ -5,9 +5,8 @@ function ProgressiveCheckout({ step1, step2, step3, step4 }) {
   return (
     <Nav
       style={{
-        background: "#141B41",
+        background: "#F1F1F1",
         borderRadius: "10px",
-        boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
         margin: "2rem 0 1rem 0",
         padding: "0.5rem",
       }}
@@ -50,7 +49,7 @@ function ProgressiveCheckout({ step1, step2, step3, step4 }) {
 
       <Nav.Item style={{ flex: 1 }}>
         {step4 ? (
-          <LinkContainer to="/placeorder">
+          <LinkContainer to="/order">
             <Nav.Link>
               Order <i class="fas fa-solid fa-check"></i>
             </Nav.Link>
