@@ -40,7 +40,7 @@ function CartScreen({ history, location, match }) {
   return (
     <Row>
       <Col md={8}>
-        <h1 style={{ marginBottom: "3rem" }}>Your Shopping Bag</h1>
+        <h2 style={{ marginBottom: "3rem" }}>Your Shopping Bag</h2>
         {cartItems.length === 0 ? (
           <Message variant="danger">No item added.</Message>
         ) : (
