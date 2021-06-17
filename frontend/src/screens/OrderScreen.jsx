@@ -7,15 +7,27 @@ import Message from "../components/Message";
 function OrderScreen() {
   const cart = useSelector((state) => state.cart);
 
-  const addDecimals = (num) => {
-    return (Math.round(num * 100) / 100).toFixed(2);
+  const transformToFloatHelperFunction = (number) => {
+    return (Math.round(number * 100) / 100).toFixed(2);
   };
 
-  cart.itemsPrice = addDecimals(
-    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+  cart.itemsPrice = transformToFloatHelperFunction(
+    cart.cartItems.reduce(
+      (accumulator, item) => accumulator + item.price * item.qty,
+      0
+    )
   );
-  cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100);
-  cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)));
+
+  // I just assumed the shipping price
+  cart.shippingPrice = transformToFloatHelperFunction(
+    cart.itemsPrice > 200 ? 60 : 20
+  );
+
+  // I just assumed 6% GST tax
+  cart.taxPrice = transformToFloatHelperFunction(
+    Number((0.06 * cart.itemsPrice).toFixed(2))
+  );
+
   cart.totalPrice = (
     Number(cart.itemsPrice) +
     Number(cart.shippingPrice) +
@@ -58,6 +70,7 @@ function OrderScreen() {
                         boxShadow:
                           "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
                         marginBottom: "1rem",
+                        padding: "1rem",
                       }}
                     >
                       <Row>
