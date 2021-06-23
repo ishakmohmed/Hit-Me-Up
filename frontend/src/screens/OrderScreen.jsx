@@ -1,10 +1,14 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Card, Col, Image, ListGroup, Row } from "react-bootstrap";
 import ProgressiveCheckout from "../components/ProgressiveCheckout";
 import Message from "../components/Message";
+import { createNewOrder } from "../actions/order";
 
-function OrderScreen() {
+function OrderScreen({ history }) {
+  const dispatch = useDispatch();
+
   const cart = useSelector((state) => state.cart);
 
   const transformToFloatHelperFunction = (number) => {
@@ -34,8 +38,27 @@ function OrderScreen() {
     Number(cart.taxPrice)
   ).toFixed(2);
 
+  const createOrder = useSelector((state) => state.createOrder);
+  const { error, order, success } = createOrder;
+
+  useEffect(() => {
+    if (success) {
+      history.push(`/order/${order._id}`);
+    }
+  });
+
   const handleAddOrder = () => {
-    console.log("lol");
+    dispatch(
+      createNewOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+      })
+    );
   };
 
   return (
@@ -160,6 +183,13 @@ function OrderScreen() {
                     <strong>RM {cart.totalPrice}</strong>
                   </Col>
                 </Row>
+              </ListGroup.Item>
+              <ListGroup.Item
+                style={{
+                  background: "#141B41",
+                }}
+              >
+                {error && <Message variant="danger">{error}</Message>}
               </ListGroup.Item>
               <ListGroup.Item style={{ background: "#141B41", color: "white" }}>
                 <Button
