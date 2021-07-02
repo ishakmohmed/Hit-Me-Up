@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Container } from "react-bootstrap";
 import CartScreen from "./screens/CartScreen";
+import FinalOrderScreen from "./screens/FinalOrderScreen";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import OrderScreen from "./screens/OrderScreen";
@@ -20,6 +21,7 @@ function App() {
         <Container>
           <Route path="/cart/:id?" component={CartScreen} />
           <Route path="/login" component={LoginScreen} />
+          <Route path="/order/:id" component={FinalOrderScreen} />
           <Route path="/order" component={OrderScreen} />
           <Route path="/register" component={RegisterScreen} />
           <Route path="/payment" component={PaymentScreen} />
