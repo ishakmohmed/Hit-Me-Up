@@ -29,7 +29,7 @@ function FinalOrderScreen({ match }) {
 
   useEffect(() => {
     dispatch(getOrderDetails(orderId));
-  }, []);
+  }, [orderId, dispatch]);
 
   return loading ? (
     <Loader />
