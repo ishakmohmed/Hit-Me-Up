@@ -45,7 +45,7 @@ function OrderScreen({ history }) {
     if (success) {
       history.push(`/order/${order._id}`);
     }
-  }, [history, success]);
+  }, [order, history, success]);
 
   const handleAddOrder = () => {
     dispatch(

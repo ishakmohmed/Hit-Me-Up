@@ -28,8 +28,10 @@ function FinalOrderScreen({ match }) {
   }
 
   useEffect(() => {
-    dispatch(getOrderDetails(orderId));
-  }, [orderId, dispatch]);
+    if (!order || order._id !== orderId) {
+      dispatch(getOrderDetails(orderId));
+    }
+  }, [dispatch, order, orderId]);
 
   return loading ? (
     <Loader />
