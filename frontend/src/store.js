@@ -12,11 +12,11 @@ import {
 import { cartReducer } from "./reducers/cart";
 
 const reducer = combineReducers({
+  cart: cartReducer,
   createOrder: createOrderReducer,
   orderDetails: orderDetailsReducer,
   productList: productListReducer,
   productDetails: productDetailsReducer,
-  cart: cartReducer,
   userDetails: userDetailsReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,

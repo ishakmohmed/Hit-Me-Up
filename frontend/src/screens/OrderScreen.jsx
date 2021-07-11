@@ -43,9 +43,9 @@ function OrderScreen({ history }) {
 
   useEffect(() => {
     if (success) {
-      history.push(`/order/${order._id}`);
+      if (order._id) history.push(`/order/${order._id}`); // remove order._id, it isn't part of the plan
     }
-  }, [order, history, success]);
+  }, [history, success]);
 
   const handleAddOrder = () => {
     dispatch(
