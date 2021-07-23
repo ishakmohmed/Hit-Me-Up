@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Placeholder,
   Divider,
@@ -6,12 +5,12 @@ import {
   Button,
   Card,
   Container,
-  Icon
+  Icon,
 } from "semantic-ui-react";
 import { range } from "lodash";
 
 export const PlaceHolderPosts = () =>
-  range(1, 3).map(item => (
+  range(1, 3).map((item) => (
     <>
       <Placeholder key={item} fluid>
         <Placeholder.Header image>
@@ -60,7 +59,7 @@ export const PlaceHolderSuggestions = () => (
 );
 
 export const PlaceHolderNotifications = () =>
-  range(1, 10).map(item => (
+  range(1, 10).map((item) => (
     <>
       <Placeholder key={item}>
         <Placeholder.Header image>
@@ -80,7 +79,7 @@ export const EndMessage = () => (
 );
 
 export const LikesPlaceHolder = () =>
-  range(1, 6).map(item => (
+  range(1, 6).map((item) => (
     <Placeholder key={item} style={{ minWidth: "200px" }}>
       <Placeholder.Header image>
         <Placeholder.Line length="full" />
