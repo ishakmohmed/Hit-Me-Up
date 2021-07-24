@@ -14,9 +14,7 @@ function Layout({ children }) {
     <>
       <HeadTags />
       <Navbar />
-      <Container text style={{ paddingTop: "1rem" }}>
-        {children}
-      </Container>
+      <Container text>{children}</Container>
     </>
   );
 }
