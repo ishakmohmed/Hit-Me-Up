@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": false,
   "scripts": {
-    "dev": "next",
+    "dev": "nodemon index.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node index.js"
   },
   "dependencies": {
     "@artsy/fresnel": "^1.2.2",

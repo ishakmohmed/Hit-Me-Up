@@ -8,8 +8,8 @@ async function connectDb() {
       useCreateIndex: true,
       useFindAndModify: false,
     });
-    
-    console.log("Connected to MongoDB!");
+
+    console.log("Connected to MongoDB.");
   } catch (error) {
     console.log(error);
     process.exit(1);
