@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Button, Message, TextArea, Divider } from "semantic-ui-react";
 
-function CommonInputs({
+function Inputs({
   user: { bio, facebook, instagram, youtube, twitter },
   handleChange,
   showSocialLinks,
@@ -73,4 +73,4 @@ function CommonInputs({
   );
 }
 
-export default CommonInputs;
+export default Inputs;

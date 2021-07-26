@@ -1,11 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Form, Button, Message, Segment, Divider } from "semantic-ui-react";
-import CommonInputs from "../components/common/Inputs";
+import Inputs from "../components/common/Inputs";
 import ImageDropDiv from "../components/common/ImageDropDiv";
-import {
-  HeaderMessage,
-  FooterMessage,
-} from "../components/common/Welcome";
+import { FooterMessage } from "../components/common/Welcome";
 import axios from "axios";
 import baseUrl from "../utils/baseUrl";
 import { registerUser } from "../utils/authUser";
@@ -22,7 +19,7 @@ function Signup() {
     facebook: "",
     youtube: "",
     twitter: "",
-    instagram: "",
+    instagram: "",        
   });
 
   const { name, email, password, bio } = user;
@@ -109,7 +106,6 @@ function Signup() {
 
   return (
     <>
-      <HeaderMessage />
       <Form
         loading={formLoading}
         error={errorMsg !== null}
@@ -195,7 +191,7 @@ function Signup() {
             iconPosition="left"
           />
 
-          <CommonInputs
+          <Inputs
             user={user}
             showSocialLinks={showSocialLinks}
             setShowSocialLinks={setShowSocialLinks}
