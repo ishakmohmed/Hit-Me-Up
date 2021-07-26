@@ -16,7 +16,6 @@ export const registerUser = async (
       user,
       profilePicUrl,
     });
-
     setToken(res.data);
   } catch (error) {
     const errorMsg = catchErrors(error);
@@ -31,7 +30,6 @@ export const loginUser = async (user, setError, setLoading) => {
 
   try {
     const res = await axios.post(`${baseUrl}/api/auth`, { user });
-
     setToken(res.data);
   } catch (error) {
     const errorMsg = catchErrors(error);
