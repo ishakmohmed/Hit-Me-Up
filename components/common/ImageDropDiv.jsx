@@ -1,5 +1,4 @@
-import React from "react";
-import { Form, Segment, Image, Icon, Header } from "semantic-ui-react";
+import { Button, Form, Segment, Image, Icon, Header } from "semantic-ui-react";
 
 function ImageDropDiv({
   highlighted,
@@ -22,7 +21,6 @@ function ImageDropDiv({
             name="media"
             ref={inputRef}
           />
-
           <div
             onDragOver={(e) => {
               e.preventDefault();
@@ -50,11 +48,18 @@ function ImageDropDiv({
                 >
                   <Header icon>
                     <Icon
-                      name="file image outline"
+                      name="image outline"
+                      color="grey"
                       style={{ cursor: "pointer" }}
                       onClick={() => inputRef.current.click()}
                     />
-                    Drag n Drop or Click To Upload Image
+                    <Button
+                      color="green"
+                      onClick={() => inputRef.current.click()}
+                    >
+                      Add picture
+                    </Button>
+                    <h4 style={{ color: "gray" }}>Supports drag and drop.</h4>
                   </Header>
                 </Segment>
               </>

@@ -19,8 +19,8 @@ export const FooterMessage = () => {
         </>
       ) : (
         <>
-          <Message attached="bottom">
-            <Link href="/reset">Forgot Password?</Link>
+          <Message attached="bottom" color="gray">
+            <Link href="/reset">Forgot password?</Link>
           </Message>
 
           <Message attached="bottom" color="black">

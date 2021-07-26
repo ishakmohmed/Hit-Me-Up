@@ -19,7 +19,7 @@ function Signup() {
     facebook: "",
     youtube: "",
     twitter: "",
-    instagram: "",        
+    instagram: "",
   });
 
   const { name, email, password, bio } = user;
