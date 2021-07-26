@@ -58,6 +58,7 @@ function Signup() {
 
   const checkUsername = async () => {
     setUsernameLoading(true);
+
     try {
       cancel && cancel();
 
@@ -79,6 +80,7 @@ function Signup() {
       setErrorMsg("Username is not available");
       setUsernameAvailable(false);
     }
+
     setUsernameLoading(false);
   };
 
@@ -91,10 +93,8 @@ function Signup() {
     setFormLoading(true);
 
     let profilePicUrl;
-    
-    if (media !== null) {
-      profilePicUrl = await uploadPic(media);
-    }
+
+    if (media !== null) profilePicUrl = await uploadPic(media);
 
     if (media !== null && !profilePicUrl) {
       setFormLoading(false);
@@ -135,7 +135,6 @@ function Signup() {
             onChange={handleChange}
             fluid
           />
-
           <Form.Input
             required
             label="Email"
@@ -146,7 +145,6 @@ function Signup() {
             fluid
             type="email"
           />
-
           <Form.Input
             label="Password"
             placeholder="Masteruser975"
@@ -164,7 +162,6 @@ function Signup() {
             type={showPassword ? "text" : "password"}
             required
           />
-
           <Form.Input
             loading={usernameLoading}
             error={!usernameAvailable}
@@ -174,24 +171,19 @@ function Signup() {
             value={username}
             onChange={(e) => {
               setUsername(e.target.value);
-              if (regexUserName.test(e.target.value)) {
-                setUsernameAvailable(true);
-              } else {
-                setUsernameAvailable(false);
-              }
+              if (regexUserName.test(e.target.value)) setUsernameAvailable(true);
+               else setUsernameAvailable(false);
             }}
             fluid
             icon={usernameAvailable ? "check" : "close"}
             iconPosition="right"
           />
-
           <Inputs
             user={user}
             showSocialLinks={showSocialLinks}
             setShowSocialLinks={setShowSocialLinks}
             handleChange={handleChange}
           />
-
           <Divider hidden />
           <Button
             icon="pencil"
@@ -202,7 +194,6 @@ function Signup() {
           />
         </Segment>
       </Form>
-
       <FooterMessage />
     </>
   );

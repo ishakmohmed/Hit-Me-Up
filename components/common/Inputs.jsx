@@ -14,7 +14,7 @@ function Inputs({
         name="bio"
         value={bio}
         onChange={handleChange}
-        placeholder="bio"
+        placeholder="Bio..."
       />
       <Button
         content="Add social media handles (optional)"
