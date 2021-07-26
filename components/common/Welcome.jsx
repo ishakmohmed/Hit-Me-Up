@@ -10,7 +10,7 @@ export const FooterMessage = () => {
     <>
       {signupRoute ? (
         <>
-          <Message attached="bottom" color="black">
+          <Message attached="bottom" color="gray">
             Login
             <Link href="/login"> here </Link>
             instead
@@ -20,12 +20,9 @@ export const FooterMessage = () => {
       ) : (
         <>
           <Message attached="bottom" color="gray">
-            <Link href="/reset">Forgot password?</Link>
-          </Message>
-
-          <Message attached="bottom" color="black">
             Sign up<Link href="/signup"> here </Link> instead{" "}
           </Message>
+          <Link href="/reset">Forgot password?</Link>
         </>
       )}
     </>

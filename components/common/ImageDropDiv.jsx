@@ -48,7 +48,7 @@ function ImageDropDiv({
                 >
                   <Header icon>
                     <Icon
-                      name="image outline"
+                      name="camera"
                       color="grey"
                       style={{ cursor: "pointer" }}
                       onClick={() => inputRef.current.click()}
@@ -59,7 +59,7 @@ function ImageDropDiv({
                     >
                       Add picture
                     </Button>
-                    <h4 style={{ color: "gray" }}>Supports drag and drop.</h4>
+                    <h4 style={{ color: "gray" }}>Supports drag and drop</h4>
                   </Header>
                 </Segment>
               </>

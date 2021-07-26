@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Form, Button, Message, Segment, Divider } from "semantic-ui-react";
+import axios from "axios";
+
 import Inputs from "../components/common/Inputs";
 import ImageDropDiv from "../components/common/ImageDropDiv";
 import { FooterMessage } from "../components/common/Welcome";
-import axios from "axios";
 import baseUrl from "../utils/baseUrl";
 import { registerUser } from "../utils/authUser";
 import uploadPic from "../utils/uploadPicToCloudinary";
+
 const regexUserName = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/;
 let cancel;
 
@@ -16,8 +18,6 @@ function Signup() {
     email: "",
     password: "",
     bio: "",
-    facebook: "",
-    youtube: "",
     twitter: "",
     instagram: "",
   });
@@ -40,14 +40,13 @@ function Signup() {
   const [errorMsg, setErrorMsg] = useState(null);
   const [formLoading, setFormLoading] = useState(false);
   const [submitDisabled, setSubmitDisabled] = useState(true);
-
   const [username, setUsername] = useState("");
   const [usernameLoading, setUsernameLoading] = useState(false);
   const [usernameAvailable, setUsernameAvailable] = useState(false);
-
   const [media, setMedia] = useState(null);
   const [mediaPreview, setMediaPreview] = useState(null);
   const [highlighted, setHighlighted] = useState(false);
+
   const inputRef = useRef();
 
   useEffect(() => {
@@ -77,7 +76,7 @@ function Signup() {
         setUser((prev) => ({ ...prev, username }));
       }
     } catch (error) {
-      setErrorMsg("Username Not Available");
+      setErrorMsg("Username is not available");
       setUsernameAvailable(false);
     }
     setUsernameLoading(false);
@@ -92,13 +91,14 @@ function Signup() {
     setFormLoading(true);
 
     let profilePicUrl;
+    
     if (media !== null) {
       profilePicUrl = await uploadPic(media);
     }
 
     if (media !== null && !profilePicUrl) {
       setFormLoading(false);
-      return setErrorMsg("Error Uploading Image");
+      return setErrorMsg("Error uploading");
     }
 
     await registerUser(user, profilePicUrl, setErrorMsg, setFormLoading);
@@ -113,11 +113,10 @@ function Signup() {
       >
         <Message
           error
-          header="Oops!"
+          header="Error"
           content={errorMsg}
           onDismiss={() => setErrorMsg(null)}
         />
-
         <Segment>
           <ImageDropDiv
             mediaPreview={mediaPreview}
@@ -131,31 +130,26 @@ function Signup() {
           <Form.Input
             required
             label="Name"
-            placeholder="Name"
             name="name"
             value={name}
             onChange={handleChange}
             fluid
-            icon="user"
-            iconPosition="left"
           />
 
           <Form.Input
             required
             label="Email"
-            placeholder="Email"
+            placeholder="masteruser@email.com"
             name="email"
             value={email}
             onChange={handleChange}
             fluid
-            icon="envelope"
-            iconPosition="left"
             type="email"
           />
 
           <Form.Input
             label="Password"
-            placeholder="Password"
+            placeholder="Masteruser975"
             name="password"
             value={password}
             onChange={handleChange}
@@ -166,7 +160,7 @@ function Signup() {
               link: true,
               onClick: () => setShowPassword(!showPassword),
             }}
-            iconPosition="left"
+            iconPosition="right"
             type={showPassword ? "text" : "password"}
             required
           />
@@ -188,7 +182,7 @@ function Signup() {
             }}
             fluid
             icon={usernameAvailable ? "check" : "close"}
-            iconPosition="left"
+            iconPosition="right"
           />
 
           <Inputs
@@ -200,10 +194,10 @@ function Signup() {
 
           <Divider hidden />
           <Button
-            icon="signup"
-            content="Signup"
+            icon="pencil"
+            content="Sign up"
             type="submit"
-            color="orange"
+            color="green"
             disabled={submitDisabled || !usernameAvailable}
           />
         </Segment>
