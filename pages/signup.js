@@ -95,7 +95,6 @@ function Signup() {
     let profilePicUrl;
 
     if (media !== null) profilePicUrl = await uploadPic(media);
-
     if (media !== null && !profilePicUrl) {
       setFormLoading(false);
       return setErrorMsg("Error uploading");
@@ -138,7 +137,6 @@ function Signup() {
           <Form.Input
             required
             label="Email"
-            placeholder="masteruser@email.com"
             name="email"
             value={email}
             onChange={handleChange}
@@ -147,14 +145,12 @@ function Signup() {
           />
           <Form.Input
             label="Password"
-            placeholder="Masteruser975"
             name="password"
             value={password}
             onChange={handleChange}
             fluid
             icon={{
               name: "eye",
-              circular: true,
               link: true,
               onClick: () => setShowPassword(!showPassword),
             }}
@@ -167,7 +163,6 @@ function Signup() {
             error={!usernameAvailable}
             required
             label="Username"
-            placeholder="Username"
             value={username}
             onChange={(e) => {
               setUsername(e.target.value);
@@ -186,7 +181,6 @@ function Signup() {
           />
           <Divider hidden />
           <Button
-            icon="pencil"
             content="Sign up"
             type="submit"
             color="green"
