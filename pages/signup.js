@@ -63,7 +63,6 @@ function Signup() {
       cancel && cancel();
 
       const CancelToken = axios.CancelToken;
-
       const res = await axios.get(`${baseUrl}/api/signup/${username}`, {
         cancelToken: new CancelToken((canceler) => {
           cancel = canceler;
@@ -71,7 +70,6 @@ function Signup() {
       });
 
       if (errorMsg !== null) setErrorMsg(null);
-
       if (res.data === "Available") {
         setUsernameAvailable(true);
         setUser((prev) => ({ ...prev, username }));

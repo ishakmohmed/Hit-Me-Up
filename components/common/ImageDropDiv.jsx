@@ -59,7 +59,7 @@ function ImageDropDiv({
                     >
                       Add picture
                     </Button>
-                    <h4 style={{ color: "gray" }}>Supports drag and drop</h4>
+                    <h4 style={{ color: "gray" }}>Drag and drop supported</h4>
                   </Header>
                 </Segment>
               </>
