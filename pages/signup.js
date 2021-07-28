@@ -165,7 +165,7 @@ function Signup() {
             onChange={(e) => {
               setUsername(e.target.value);
               if (regexUserName.test(e.target.value)) setUsernameAvailable(true);
-               else setUsernameAvailable(false);
+              else setUsernameAvailable(false);
             }}
             fluid
             icon={usernameAvailable ? "check" : "close"}
