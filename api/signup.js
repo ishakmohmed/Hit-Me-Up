@@ -4,9 +4,9 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const isEmail = require("validator/lib/isEmail");
 
-const UserModel = require("../models/UserModel");
-const ProfileModel = require("../models/ProfileModel");
-const FollowerModel = require("../models/FollowerModel");
+const UserModel = require("../models/user");
+const ProfileModel = require("../models/profile");
+const FollowerModel = require("../models/follower");
 
 const userPng =
   "https://icon-library.com/images/default-user-icon/default-user-icon-4.jpg";

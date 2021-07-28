@@ -4,7 +4,7 @@ const server = require("http").Server(app);
 const next = require("next");
 require("dotenv").config({ path: "./.env.local" });
 const registerApi = require("./api/signup");
-const loginApi = require("./api/login");
+const loginApi = require("./api/auth");
 
 const connectDb = require("./utilsServer/connectDb");
 
