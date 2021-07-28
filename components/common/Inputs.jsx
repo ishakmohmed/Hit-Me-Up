@@ -18,7 +18,6 @@ function Inputs({
       />
       <Button
         content="Add social media handles (optional)"
-        color="gray"
         icon="world"
         type="button"
         onClick={() => setShowSocialLinks(!showSocialLinks)}

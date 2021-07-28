@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const isEmail = require("validator/lib/isEmail");
 
-const UserModel = require("../models/UserModel");
+const UserModel = require("../models/user");
 
 router.post("/", async (req, res) => {
   const { email, password } = req.body.user;
