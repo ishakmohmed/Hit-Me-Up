@@ -152,7 +152,6 @@ function Signup() {
               link: true,
               onClick: () => setShowPassword(!showPassword),
             }}
-            iconPosition="right"
             type={showPassword ? "text" : "password"}
             required
           />
@@ -164,7 +163,8 @@ function Signup() {
             value={username}
             onChange={(e) => {
               setUsername(e.target.value);
-              if (regexUserName.test(e.target.value)) setUsernameAvailable(true);
+              if (regexUserName.test(e.target.value))
+                setUsernameAvailable(true);
               else setUsernameAvailable(false);
             }}
             fluid

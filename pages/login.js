@@ -72,7 +72,6 @@ function Login() {
               link: true,
               onClick: () => setShowPassword(!showPassword),
             }}
-            iconPosition="right"
             type={showPassword ? "text" : "password"}
             required
           />
