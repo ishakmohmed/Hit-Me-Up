@@ -49,7 +49,7 @@ function ImageDropDiv({
                   <Header icon>
                     <Icon
                       name="camera"
-                      color="gray"
+                      color="grey"
                       style={{ cursor: "pointer" }}
                       onClick={() => inputRef.current.click()}
                     />
