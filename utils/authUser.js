@@ -11,6 +11,8 @@ export const registerUser = async (
   setError,
   setLoading
 ) => {
+  setLoading(true);
+
   try {
     const res = await axios.post(`${baseUrl}/api/signup`, {
       user,

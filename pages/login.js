@@ -84,7 +84,6 @@ function Login() {
           />
         </Segment>
       </Form>
-
       <FooterMessage />
     </>
   );

@@ -23,7 +23,7 @@ router.get("/:username", async (req, res) => {
     const user = await UserModel.findOne({ username: username.toLowerCase() });
     if (user) return res.status(401).send("Username is already taken");
 
-    return res.status(200).send("Username is available");
+    return res.status(200).send("Available"); // this exact string ("Available") is checked for in the frontend, so don't change it
   } catch (error) {
     console.error(error);
     return res.status(500).send("Internal server error");
