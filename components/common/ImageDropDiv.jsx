@@ -35,9 +35,9 @@ function ImageDropDiv({
               setHighlighted(true);
 
               const droppedFile = Array.from(e.dataTransfer.files);
-              if (droppedFile.length > 0){
-              setMedia(droppedFile[0]);
-              setMediaPreview(URL.createObjectURL(droppedFile[0]));
+              if (droppedFile.length > 0) {
+                setMedia(droppedFile[0]);
+                setMediaPreview(URL.createObjectURL(droppedFile[0]));
               }
             }}
           >
@@ -56,7 +56,7 @@ function ImageDropDiv({
                       onClick={() => inputRef.current.click()}
                     />
                     <Button
-                      type='button'
+                      type="button"
                       color="green"
                       onClick={() => inputRef.current.click()}
                     >

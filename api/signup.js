@@ -43,7 +43,7 @@ router.post("/", async (req, res) => {
     if (user) return res.status(401).send("User is already registered");
 
     user = await UserModel.findOne({ username: username.toLowerCase() });
-    if (user) return res.status(401).send("Username already taken.");
+    if (user) return res.status(401).send("Username already taken");
 
     user = new UserModel({
       name,
