@@ -27,9 +27,9 @@ function Signup() {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
-    if (name === "media") {
+    if (name === "media" && files.length > 0) {
       setMedia(files[0]);
-      setMediaPreview(URL.createObjectURL(files[0]));
+      return setMediaPreview(URL.createObjectURL(files[0]));
     }
 
     setUser((prev) => ({ ...prev, [name]: value }));
@@ -69,8 +69,8 @@ function Signup() {
         }),
       });
 
-      if (errorMsg !== null) setErrorMsg(null);
       if (res.data === "Available") {
+        if (errorMsg !== null) setErrorMsg(null);
         setUsernameAvailable(true);
         setUser((prev) => ({ ...prev, username }));
       }
