@@ -42,6 +42,7 @@ export const loginUser = async (user, setError, setLoading) => {
 };
 
 export const redirectUser = (ctx, location) => {
+  // if the user is in backend, else the user is in frontend...
   if (ctx.req) {
     ctx.res.writeHead(302, { Location: location });
     ctx.res.end();
