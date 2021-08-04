@@ -40,6 +40,7 @@ function Signup() {
 
     if (name === "media" && files.length > 0) {
       setMedia(files[0]);
+
       return setMediaPreview(URL.createObjectURL(files[0]));
     }
 
@@ -92,6 +93,7 @@ function Signup() {
     if (media !== null) profilePicUrl = await uploadPic(media);
     if (media !== null && !profilePicUrl) {
       setFormLoading(false);
+      
       return setErrorMsg("Error uploading");
     }
 
