@@ -1,6 +1,21 @@
-function HomePage(){
-    return <div>HomePage</div>
+import axios from "axios";
+
+function Index({ posts }) {
+  return (
+    <div>
+      {posts &&
+        posts.length > 0 &&
+        posts.map((post) => <h1 key={post._id}>{post.title}</h1>)}
+    </div>
+  );
 }
 
-
-export default HomePage;
+Index.getInitialProps = async (ctx) => {
+  try {
+    const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+    
+    return { posts: res.data };
+  } catch (error) {
+    return { errorLoading: true };
+  }
+};
