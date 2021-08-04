@@ -11,11 +11,9 @@ function Index({ posts }) {
 }
 
 Index.getInitialProps = async (ctx) => {
-  try {
-    const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
-    
-    return { posts: res.data };
-  } catch (error) {
-    return { errorLoading: true };
-  }
+  const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+
+  return { posts: res.data };
 };
+
+export default Index;
