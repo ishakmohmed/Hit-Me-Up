@@ -30,7 +30,7 @@ function Login() {
     isUser ? setSubmitDisabled(false) : setSubmitDisabled(true);
   }, [user]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {    
     e.preventDefault();
 
     await loginUser(user, setErrorMsg, setFormLoading);

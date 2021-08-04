@@ -13,6 +13,17 @@ const regexUserName = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/;
 let cancel;
 
 function Signup() {
+  const [showSocialLinks, setShowSocialLinks] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [formLoading, setFormLoading] = useState(false);
+  const [submitDisabled, setSubmitDisabled] = useState(true);
+  const [username, setUsername] = useState("");
+  const [usernameLoading, setUsernameLoading] = useState(false);
+  const [usernameAvailable, setUsernameAvailable] = useState(false);
+  const [media, setMedia] = useState(null);
+  const [mediaPreview, setMediaPreview] = useState(null);
+  const [highlighted, setHighlighted] = useState(false);
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -21,7 +32,7 @@ function Signup() {
     twitter: "",
     instagram: "",
   });
-
+  const inputRef = useRef();
   const { name, email, password, bio } = user;
 
   const handleChange = (e) => {
@@ -34,20 +45,6 @@ function Signup() {
 
     setUser((prev) => ({ ...prev, [name]: value }));
   };
-
-  const [showSocialLinks, setShowSocialLinks] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [errorMsg, setErrorMsg] = useState(null);
-  const [formLoading, setFormLoading] = useState(false);
-  const [submitDisabled, setSubmitDisabled] = useState(true);
-  const [username, setUsername] = useState("");
-  const [usernameLoading, setUsernameLoading] = useState(false);
-  const [usernameAvailable, setUsernameAvailable] = useState(false);
-  const [media, setMedia] = useState(null);
-  const [mediaPreview, setMediaPreview] = useState(null);
-  const [highlighted, setHighlighted] = useState(false);
-
-  const inputRef = useRef();
 
   useEffect(() => {
     const isUser = Object.values({ name, email, password, bio }).every((item) =>
@@ -69,8 +66,8 @@ function Signup() {
         }),
       });
 
+      if (errorMsg !== null) setErrorMsg(null);
       if (res.data === "Available") {
-        if (errorMsg !== null) setErrorMsg(null);
         setUsernameAvailable(true);
         setUser((prev) => ({ ...prev, username }));
       }
