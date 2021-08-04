@@ -5,6 +5,22 @@ const bcrypt = require("bcryptjs");
 const isEmail = require("validator/lib/isEmail");
 
 const UserModel = require("../models/user");
+const FollowerModel = require("../models/follower");
+const authMiddleware = require("../middleware/authMiddleware");
+
+router.get("/", authMiddleware, async (req, res) => {
+  const { userId } = req;
+
+  try {
+    const user = await UserModel.findById(userId);
+    const userFollowStats = await FollowerModel.findOne({ user: userId });
+
+    return res.status(200).json({ user, userFollowStats });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Internal server error");
+  }
+});
 
 router.post("/", async (req, res) => {
   const { email, password } = req.body.user;
