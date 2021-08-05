@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
+
 const authMiddleware = require("../middleware/authMiddleware");
-const UserModel = require("../models/UserModel");
+const UserModel = require("../models/user");
 
 router.get("/:searchText", authMiddleware, async (req, res) => {
   try {
@@ -16,7 +17,7 @@ router.get("/:searchText", authMiddleware, async (req, res) => {
     return res.status(200).json(results);
   } catch (error) {
     console.error(error);
-    return res.status(500).send("Internal server error");
+    return res.status(500).send(`Server error`);
   }
 });
 
