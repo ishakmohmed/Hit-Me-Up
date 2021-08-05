@@ -41,7 +41,6 @@ function SearchComponent() {
         return setLoading(false);
       }
 
-      console.log("duddddddddddeeeeeeeeeee", res.data);
       setResults(res.data);
     } catch (error) {
       console.error("Error");
@@ -76,7 +75,7 @@ const ResultRenderer = ({ _id, profilePicUrl, name }) => {
   return (
     <List key={_id}>
       <List.Item>
-        <Image src={profilePicUrl} alt="ProfilePic" avatar />
+        <Image src={profilePicUrl} alt="img" avatar />
         <List.Content header={name} as="a" />
       </List.Item>
     </List>

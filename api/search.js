@@ -17,7 +17,7 @@ router.get("/:searchText", authMiddleware, async (req, res) => {
     return res.status(200).json(results);
   } catch (error) {
     console.error(error);
-    return res.status(500).send(`Server error`);
+    return res.status(500).send("Internal server error");
   }
 });
 
