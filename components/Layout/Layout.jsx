@@ -30,7 +30,7 @@ function Layout({ children, user }) {
           <div style={{ margin: "0 1rem" }}>
             <Ref innerRef={contextRef}>
               <Grid>
-                <Grid.Column floated="left" width={2}>
+                <Grid.Column floated="left" width={1}>
                   <Sticky context={contextRef}>
                     <SideBar user={user} />
                   </Sticky>
