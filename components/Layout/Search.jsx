@@ -1,4 +1,4 @@
-function Search(props) {
+function Search() {
   return (
     <div>
       

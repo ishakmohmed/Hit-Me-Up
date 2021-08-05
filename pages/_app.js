@@ -21,7 +21,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 
   if (!token) protectedRoutes && redirectUser(ctx, "/login");
   else {
-    if (component.getInitialProps)
+    if (Component.getInitialProps)
       pageProps = await Component.getInitialProps(ctx);
 
     try {

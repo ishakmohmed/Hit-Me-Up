@@ -1,5 +1,4 @@
 import { createRef } from "react";
-import { Container } from "semantic-ui-react";
 import Router from "next/router";
 import nprogress from "nprogress";
 import {
