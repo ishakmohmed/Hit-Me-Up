@@ -1,6 +1,13 @@
-import { List, Icon } from "semantic-ui-react";
+import { List } from "semantic-ui-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import {
+  MdHome,
+  MdMessage,
+  MdNotifications,
+  MdPerson,
+  MdCancel,
+} from "react-icons/md";
 
 import { logoutUser } from "../../utils/authUser";
 
@@ -20,66 +27,34 @@ function SideBar({
       >
         <Link href="/">
           <List.Item active={isActive("/")}>
-            <Icon name="home" size="large" color={isActive("/") && "teal"} />
-            <List.Content>
-              <List.Header content="Home" />
-            </List.Content>
+            <MdHome fontSize="2rem" color="#1E555C" />
           </List.Item>
         </Link>
         <br />
 
         <Link href="/messages">
           <List.Item active={isActive("/messages")}>
-            <Icon
-              name={unreadMessage ? "hand point right" : "mail outline"}
-              size="large"
-              color={
-                (isActive("/messages") && "teal") || (unreadMessage && "orange")
-              }
-            />
-            <List.Content>
-              <List.Header content="Messages" />
-            </List.Content>
+            <MdMessage fontSize="2rem" color="#1E555C" />
           </List.Item>
         </Link>
         <br />
 
         <Link href="/notifications">
           <List.Item active={isActive("/notifications")}>
-            <Icon
-              name={unreadNotification ? "hand point right" : "bell outline"}
-              size="large"
-              color={
-                (isActive("/notifications") && "teal") ||
-                (unreadNotification && "orange")
-              }
-            />
-            <List.Content>
-              <List.Header content="Notifications" />
-            </List.Content>
+            <MdNotifications fontSize="2rem" color="#1E555C" />
           </List.Item>
         </Link>
         <br />
 
         <Link href={`/${username}`}>
           <List.Item active={router.query.username === username}>
-            <Icon
-              name="user"
-              size="large"
-              color={router.query.username === username && "teal"}
-            />
-            <List.Content>
-              <List.Header content="Account" />
-            </List.Content>
+            <MdPerson fontSize="2rem" color="#1E555C" />
           </List.Item>
         </Link>
         <br />
 
         <List.Item onClick={() => logoutUser(email)}>
-          <Icon name="log out" size="large" />
-          <List.Content>
-            <List.Header content="Logout" />
-          </List.Content>
+          <MdCancel fontSize="2rem" color="#1E555C" />
         </List.Item>
       </List>
     </>

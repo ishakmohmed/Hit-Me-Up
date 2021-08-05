@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Form, Button, Message, Segment, Divider } from "semantic-ui-react";
+import cookie from "js-cookie";
 
 import { loginUser } from "../utils/authUser";
 import { FooterMessage } from "../components/common/Welcome";
