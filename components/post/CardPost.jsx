@@ -107,8 +107,6 @@ function CardPost({ post, user, setPosts, setShowToastr }) {
               style={{ cursor: "pointer" }}
             />
 
-            {/* a little different */}
-
             {likes.length > 0 && (
               <span className="spanLikesList">
                 {`${likes.length} ${likes.length === 1 ? "like" : "likes"}`}
