@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const uuid = require("uuid").v4;
 
 const authMiddleware = require("../middleware/authMiddleware");
 const UserModel = require("../models/user");
@@ -10,7 +11,7 @@ router.post("/", authMiddleware, async (req, res) => {
   const { text, location, picUrl } = req.body;
 
   if (text.length < 1)
-    return res.status(401).send("Text must be atleast 1 character");
+    return res.status(401).send("Text must be at least 1 character");
 
   try {
     const newPost = {
@@ -146,5 +147,36 @@ router.get("/like/:postId", authMiddleware, async (req, res) => {
     return res.status(500).send("Internal server error");
   }
 });
+
+router.post("/comment/:postId", authMiddleware, async (req, res) => {
+  try {
+    const { postId } = req.params;
+    const { text } = req.body;
+
+    if (text.length < 1)
+      return res.status(401).send("Comment should be at least 1 character");
+
+    const post = await PostModel.findById(postId);
+
+    if (!post) return res.status(404).send("Post not found");
+
+    const newComment = {
+      _id: uuid(),
+      text,
+      user: req.userId,
+      date: Date.now(),
+    };
+
+    await post.comments.unshift(newComment);
+    await post.save();
+
+    return res.status(200).send("Comment added");
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Internal server error");
+  }
+});
+
+
 
 module.exports = router;
