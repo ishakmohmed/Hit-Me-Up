@@ -71,7 +71,7 @@ const Following = ({
                 </List.Content>
                 <Image avatar src={profileFollowing.user.profilePicUrl} />
                 <List.Content as="a" href={`/${profileFollowing.user.username}`}>
-                  <bold>{profileFollowing.user.name}  
+                  {profileFollowing.user.name}  
                 </List.Content>
               </List.Item>
             </List>

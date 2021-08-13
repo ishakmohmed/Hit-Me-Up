@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Modal, Header, Button, Grid, Icon } from "semantic-ui-react";
+import { useState } from "react";
+import { Modal, Header, Button, Grid } from "semantic-ui-react";
 import Cropper from "react-cropper";
 
 function CropImageModal({ mediaPreview, setMedia, showModal, setShowModal }) {
   const [cropper, setCropper] = useState();
-
   const getCropData = () => {
     if (cropper) {
       setMedia(cropper.getCroppedCanvas().toDataURL());
@@ -14,16 +13,6 @@ function CropImageModal({ mediaPreview, setMedia, showModal, setShowModal }) {
     setShowModal(false);
   };
 
-  useEffect(() => {
-    window.addEventListener("keydown", ({ key }) => {
-      if (cropper) {
-        if (key === "m") cropper.setDragMode("move");
-        if (key === "c") cropper.setDragMode("crop");
-        if (key === "r") cropper.reset();
-      }
-    });
-  }, [cropper]);
-
   return (
     <>
       <Modal
@@ -32,8 +21,7 @@ function CropImageModal({ mediaPreview, setMedia, showModal, setShowModal }) {
         onClose={() => setShowModal(false)}
         open={showModal}
       >
-        <Modal.Header content="Crop image before upload" />
-
+        <Modal.Header content="Crop Image" />
         <Grid columns={2}>
           <Grid.Column>
             <Modal.Content image>
@@ -62,11 +50,9 @@ function CropImageModal({ mediaPreview, setMedia, showModal, setShowModal }) {
           <Grid.Column>
             <Modal.Content image>
               <div>
-                <Header as="h2">
-                  <Icon name="file image outline" />
-                  <Header.Content content="Final" />
+                <Header as="h3">
+                  <Header.Content content="Result" />
                 </Header>
-
                 <div>
                   <div
                     style={{
@@ -87,34 +73,17 @@ function CropImageModal({ mediaPreview, setMedia, showModal, setShowModal }) {
 
         <Modal.Actions>
           <Button
-            title="Reset (R)"
+            title="Reset"
             icon="redo"
             circular
             onClick={() => cropper && cropper.reset()}
           />
-
-          <Button
-            title="Move Canvas (M)"
-            icon="move"
-            circular
-            onClick={() => cropper && cropper.setDragMode("move")}
-          />
-
-          <Button
-            title="New Cropbox (C)"
-            icon="crop"
-            circular
-            onClick={() => cropper && cropper.setDragMode("crop")}
-          />
-
           <Button
             negative
             content="Cancel"
-            icon="cancel"
             onClick={() => setShowModal(false)}
           />
-
-          <Button content="Crop Image" icon="checkmark" positive onClick={getCropData} />
+          <Button content="Crop"  positive onClick={getCropData} />
         </Modal.Actions>
       </Modal>
     </>

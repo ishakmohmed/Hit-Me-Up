@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { List, Popup, Image } from "semantic-ui-react";
-import catchErrors from "../../utils/catchErrors";
 import Router from "next/router";
+
+import catchErrors from "../../utils/catchErrors";
 import { LikesPlaceHolder } from "../layout/PlaceHolderGroup";
 import { Axios } from "../../utils/postActions";
 
@@ -11,12 +12,15 @@ function LikesList({ postId, trigger }) {
 
   const getLikesList = async () => {
     setLoading(true);
+
     try {
       const res = await Axios.get(`/like/${postId}`);
+
       setLikesList(res.data);
     } catch (error) {
       alert(catchErrors(error));
     }
+
     setLoading(false);
   };
 
@@ -45,8 +49,6 @@ function LikesList({ postId, trigger }) {
               <List selection size="large">
                 {likesList.map(like => (
                   <List.Item key={like._id}>
-                    <Image avatar src={like.user.profilePicUrl} />
-
                     <List.Content>
                       <List.Header
                         onClick={() => Router.push(`/${like.user.username}`)}

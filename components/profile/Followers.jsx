@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Button, Image, List } from "semantic-ui-react";
+import axios from "axios";
+import cookie from "js-cookie";
+
 import Spinner from "../layout/Spinner";
 import { NoFollowData } from "../layout/NoData";
 import { followUser, unfollowUser } from "../../utils/profileActions";
-import axios from "axios";
 import baseUrl from "../../utils/baseUrl";
-import cookie from "js-cookie";
 
 const Followers = ({
   user,
@@ -27,8 +28,9 @@ const Followers = ({
 
         setFollowers(res.data);
       } catch (error) {
-        alert("Error Loading Followers");
+        alert("Error loading");
       }
+
       setLoading(false);
     };
 
@@ -41,8 +43,6 @@ const Followers = ({
         <Spinner />
       ) : followers.length > 0 ? (
         followers.map(profileFollower => {
-          /*  */
-
           const isFollowing =
             loggedUserFollowStats.following.length > 0 &&
             loggedUserFollowStats.following.filter(
@@ -56,16 +56,13 @@ const Followers = ({
                   {profileFollower.user._id !== user._id && (
                     <Button
                       color={isFollowing ? "instagram" : "twitter"}
-                      icon={isFollowing ? "check" : "add user"}
                       content={isFollowing ? "Following" : "Follow"}
                       disabled={followLoading}
                       onClick={() => {
                         setFollowLoading(true);
-
                         isFollowing
                           ? unfollowUser(profileFollower.user._id, setUserFollowStats)
                           : followUser(profileFollower.user._id, setUserFollowStats);
-
                         setFollowLoading(false);
                       }}
                     />

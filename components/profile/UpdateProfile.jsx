@@ -52,12 +52,6 @@ function UpdateProfile({ Profile }) {
           await profileUpdate(profile, setLoading, setErrorMsg, profilePicUrl);
         }}
       >
-        <Message
-          onDismiss={() => setErrorMsg(false)}
-          content={errorMsg}
-          attached
-          color="black"
-        />
         <ImageDropDiv
           inputRef={inputRef}
           highlighted={highlighted}

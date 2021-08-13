@@ -1,9 +1,9 @@
-import React from "react";
 import { Modal, Image, Card, Icon, Divider } from "semantic-ui-react";
+import Link from "next/link";
+
 import PostComments from "./PostComments";
 import CommentInputField from "./CommentInputField";
 import calculateTime from "../../utils/calculateTime";
-import Link from "next/link";
 import { likePost } from "../../utils/postActions";
 import LikesList from "./LikesList";
 
@@ -20,17 +20,13 @@ function NoImageModal({
     <Card fluid>
       <Card.Content>
         <Image floated="left" avatar src={post.user.profilePicUrl} />
-
         <Card.Header>
           <Link href={`/${post.user.username}`}>
             <a>{post.user.name}</a>
           </Link>
         </Card.Header>
-
         <Card.Meta>{calculateTime(post.createdAt)}</Card.Meta>
-
         {post.location && <Card.Meta content={post.location} />}
-
         <Card.Description
           style={{
             fontSize: "17px",
@@ -40,7 +36,6 @@ function NoImageModal({
           {post.text}
         </Card.Description>
       </Card.Content>
-
       <Card.Content extra>
         <Icon
           name={isLiked ? "heart" : "heart outline"}
@@ -50,7 +45,6 @@ function NoImageModal({
             likePost(post._id, user._id, setLikes, isLiked ? false : true)
           }
         />
-
         <LikesList
           postId={post._id}
           trigger={
@@ -61,9 +55,7 @@ function NoImageModal({
             )
           }
         />
-
         <Divider hidden />
-
         <div
           style={{
             overflow: "auto",
