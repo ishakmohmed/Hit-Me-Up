@@ -1,5 +1,6 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { Form, Button, Message, Divider } from "semantic-ui-react";
+
 import ImageDropDiv from "../common/ImageDropDiv";
 import CommonInputs from "../common/CommonInputs";
 import uploadPic from "../../utils/uploadPicToCloudinary";
@@ -9,17 +10,12 @@ function UpdateProfile({ Profile }) {
   const [profile, setProfile] = useState({
     profilePicUrl: Profile.user.profilePicUrl,
     bio: Profile.bio || "",
-    facebook: (Profile.social && Profile.social.facebook) || "",
-    youtube: (Profile.social && Profile.social.youtube) || "",
     instagram: (Profile.social && Profile.social.instagram) || "",
     twitter: (Profile.social && Profile.social.twitter) || ""
   });
-
   const [errorMsg, setErrorMsg] = useState(null);
-
   const [loading, setLoading] = useState(false);
   const [showSocialLinks, setShowSocialLinks] = useState(false);
-
   const [highlighted, setHighlighted] = useState(false);
   const inputRef = useRef();
   const [media, setMedia] = useState(null);
@@ -32,6 +28,7 @@ function UpdateProfile({ Profile }) {
       setMedia(files[0]);
       setMediaPreview(URL.createObjectURL(files[0]));
     }
+
     setProfile(prev => ({ ...prev, [name]: value }));
   };
 
@@ -46,13 +43,10 @@ function UpdateProfile({ Profile }) {
 
           let profilePicUrl;
 
-          if (media !== null) {
-            profilePicUrl = await uploadPic(media);
-          }
-
+          if (media !== null) profilePicUrl = await uploadPic(media);
           if (media !== null && !profilePicUrl) {
             setLoading(false);
-            return setErrorMsg("Error Uploading Image");
+            return setErrorMsg("Error uploading image");
           }
 
           await profileUpdate(profile, setLoading, setErrorMsg, profilePicUrl);
@@ -60,12 +54,10 @@ function UpdateProfile({ Profile }) {
       >
         <Message
           onDismiss={() => setErrorMsg(false)}
-          error
           content={errorMsg}
           attached
-          header="Oops!"
+          color="black"
         />
-
         <ImageDropDiv
           inputRef={inputRef}
           highlighted={highlighted}
@@ -76,16 +68,13 @@ function UpdateProfile({ Profile }) {
           setMedia={setMedia}
           profilePicUrl={profile.profilePicUrl}
         />
-
         <CommonInputs
           user={profile}
           handleChange={handleChange}
           showSocialLinks={showSocialLinks}
           setShowSocialLinks={setShowSocialLinks}
         />
-
         <Divider hidden />
-
         <Button
           color="blue"
           icon="pencil alternate"

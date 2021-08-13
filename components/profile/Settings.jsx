@@ -1,15 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { List, Divider, Message, Checkbox, Form, Button } from "semantic-ui-react";
+
 import { passwordUpdate, toggleMessagePopup } from "../../utils/profileActions";
 
 function Settings({ newMessagePopup }) {
   const [passwordFields, showPasswordFields] = useState(false);
-
   const [newMessageSettings, showNewMessageSettings] = useState(false);
-
   const isFirstRun = useRef(true);
   const [popupSetting, setPopupSetting] = useState(newMessagePopup);
-
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
@@ -19,6 +17,7 @@ function Settings({ newMessagePopup }) {
   useEffect(() => {
     if (isFirstRun.current) {
       isFirstRun.current = false;
+
       return;
     }
   }, [popupSetting]);
@@ -27,7 +26,11 @@ function Settings({ newMessagePopup }) {
     <>
       {success && (
         <>
-          <Message success icon="check circle" header="Updated Successfully" />
+          <Message
+            compact
+            color="black"
+            content="Updated"
+          />
           <Divider hidden />
         </>
       )}

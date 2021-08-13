@@ -1,4 +1,3 @@
-import React from "react";
 import { Menu } from "semantic-ui-react";
 
 function ProfileMenuTabs({
@@ -11,13 +10,12 @@ function ProfileMenuTabs({
 }) {
   return (
     <>
-      <Menu pointing secondary>
+      <Menu pointing style={{ marginTop: "2rem"}}>
         <Menu.Item
-          name="profile"
+          name="Profile"
           active={activeItem === "profile"}
           onClick={() => handleItemClick("profile")}
         />
-
         <Menu.Item
           name={`${followersLength} followers`}
           active={activeItem === "followers"}
@@ -35,15 +33,13 @@ function ProfileMenuTabs({
               active={activeItem === "following"}
               onClick={() => handleItemClick("following")}
             />
-
             <Menu.Item
-              name="Update Profile"
+              name="Edit profile"
               active={activeItem === "updateProfile"}
               onClick={() => handleItemClick("updateProfile")}
             />
-
             <Menu.Item
-              name="settings"
+              name="Settings"
               active={activeItem === "settings"}
               onClick={() => handleItemClick("settings")}
             />

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Segment, Image, Grid, Divider, Header, Button, List } from "semantic-ui-react";
+
 import { followUser, unfollowUser } from "../../utils/profileActions";
 
 function ProfileHeader({
@@ -9,7 +10,6 @@ function ProfileHeader({
   setUserFollowStats
 }) {
   const [loading, setLoading] = useState(false);
-
   const isFollowing =
     loggedUserFollowStats.following.length > 0 &&
     loggedUserFollowStats.following.filter(

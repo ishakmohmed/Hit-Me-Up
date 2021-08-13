@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Button, Image, List } from "semantic-ui-react";
+import axios from "axios";
+import cookie from "js-cookie";
+
 import Spinner from "../layout/Spinner";
 import { NoFollowData } from "../layout/NoData";
 import { followUser, unfollowUser } from "../../utils/profileActions";
-import axios from "axios";
 import baseUrl from "../../utils/baseUrl";
-import cookie from "js-cookie";
 
 const Following = ({
   user,
@@ -20,6 +21,7 @@ const Following = ({
   useEffect(() => {
     const getFollowing = async () => {
       setLoading(true);
+
       try {
         const res = await axios.get(`${baseUrl}/api/profile/following/${profileUserId}`, {
           headers: { Authorization: cookie.get("token") }
@@ -27,8 +29,9 @@ const Following = ({
 
         setFollowing(res.data);
       } catch (error) {
-        alert("Error Loading Followers");
+        alert("Error loading");
       }
+
       setLoading(false);
     };
 
@@ -41,8 +44,6 @@ const Following = ({
         <Spinner />
       ) : following.length > 0 ? (
         following.map(profileFollowing => {
-          /*  */
-
           const isFollowing =
             loggedUserFollowStats.following.length > 0 &&
             loggedUserFollowStats.following.filter(
@@ -56,16 +57,13 @@ const Following = ({
                   {profileFollowing.user._id !== user._id && (
                     <Button
                       color={isFollowing ? "instagram" : "twitter"}
-                      icon={isFollowing ? "check" : "add user"}
                       content={isFollowing ? "Following" : "Follow"}
                       disabled={followLoading}
                       onClick={() => {
                         setFollowLoading(true);
-
                         isFollowing
                           ? unfollowUser(profileFollowing.user._id, setUserFollowStats)
                           : followUser(profileFollowing.user._id, setUserFollowStats);
-
                         setFollowLoading(false);
                       }}
                     />
@@ -73,7 +71,7 @@ const Following = ({
                 </List.Content>
                 <Image avatar src={profileFollowing.user.profilePicUrl} />
                 <List.Content as="a" href={`/${profileFollowing.user.username}`}>
-                  {profileFollowing.user.name}
+                  <bold>{profileFollowing.user.name}  
                 </List.Content>
               </List.Item>
             </List>
