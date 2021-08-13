@@ -3,15 +3,10 @@ const users = [];
 const addUser = async (userId, socketId) => {
   const user = users.find(user => user.userId === userId);
 
-  if (user && user.socketId === socketId) {
-    return users;
-  }
-  //
+  if (user && user.socketId === socketId) return users;
   else {
-    if (user && user.socketId !== socketId) {
-      await removeUser(user.socketId);
-    }
-
+    if (user && user.socketId !== socketId) await removeUser(user.socketId);
+  
     const newUser = { userId, socketId };
 
     users.push(newUser);

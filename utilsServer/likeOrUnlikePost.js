@@ -10,7 +10,6 @@ const likeOrUnlikePost = async (postId, userId, like) => {
     const post = await PostModel.findById(postId);
 
     if (!post) return { error: "No post found" };
-
     if (like) {
       const isLiked =
         post.likes.filter(like => like.user.toString() === userId).length > 0;
@@ -18,15 +17,10 @@ const likeOrUnlikePost = async (postId, userId, like) => {
       if (isLiked) return { error: "Post liked before" };
 
       await post.likes.unshift({ user: userId });
-
       await post.save();
 
-      if (post.user.toString() !== userId) {
-        await newLikeNotification(userId, postId, post.user.toString());
-      }
-    }
-    //
-    else {
+      if (post.user.toString() !== userId) await newLikeNotification(userId, postId, post.user.toString());
+    } else {
       const isLiked =
         post.likes.filter(like => like.user.toString() === userId).length === 0;
 
@@ -35,16 +29,12 @@ const likeOrUnlikePost = async (postId, userId, like) => {
       const indexOf = post.likes.map(like => like.user.toString()).indexOf(userId);
 
       await post.likes.splice(indexOf, 1);
-
       await post.save();
 
-      if (post.user.toString() !== userId) {
-        await removeLikeNotification(userId, postId, post.user.toString());
-      }
+      if (post.user.toString() !== userId) await removeLikeNotification(userId, postId, post.user.toString());
     }
 
     const user = await UserModel.findById(userId);
-
     const { name, profilePicUrl, username } = user;
 
     return {
@@ -55,7 +45,7 @@ const likeOrUnlikePost = async (postId, userId, like) => {
       postByUserId: post.user.toString()
     };
   } catch (error) {
-    return { error: "Server error" };
+    return { error: "Internal server error" };
   }
 };
 
