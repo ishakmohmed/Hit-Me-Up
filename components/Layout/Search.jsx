@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { List, Image, Search } from "semantic-ui-react";
 import axios from "axios";
 import cookie from "js-cookie";
@@ -13,8 +13,9 @@ function SearchComponent() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
 
-  const handleChange = async (e) => {
+  const handleChange = async e => {
     const { value } = e.target;
+
     setText(value);
 
     if (value.length === 0) return;
@@ -30,9 +31,9 @@ function SearchComponent() {
       const token = cookie.get("token");
       const res = await axios.get(`${baseUrl}/api/search/${value}`, {
         headers: { Authorization: token },
-        cancelToken: new CancelToken((canceler) => {
+        cancelToken: new CancelToken(canceler => {
           cancel = canceler;
-        }),
+        })
       });
 
       if (res.data.length === 0) {
@@ -43,7 +44,7 @@ function SearchComponent() {
 
       setResults(res.data);
     } catch (error) {
-      console.error("Error");
+      console.log(error);
     }
 
     setLoading(false);
@@ -51,7 +52,7 @@ function SearchComponent() {
 
   useEffect(() => {
     if (text.length === 0 && loading) setLoading(false);
-  }, []);
+  }, [text]);
 
   return (
     <Search
@@ -75,7 +76,7 @@ const ResultRenderer = ({ _id, profilePicUrl, name }) => {
   return (
     <List key={_id}>
       <List.Item>
-        <Image src={profilePicUrl} alt="img" avatar />
+        <Image src={profilePicUrl} alt="ProfilePic" avatar />
         <List.Content header={name} as="a" />
       </List.Item>
     </List>

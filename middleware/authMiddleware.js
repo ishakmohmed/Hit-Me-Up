@@ -10,6 +10,7 @@ module.exports = (req, res, next) => {
     );
 
     req.userId = userId;
+
     next();
   } catch (error) {
     console.error(error);

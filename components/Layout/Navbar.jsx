@@ -5,7 +5,7 @@ import Link from "next/link";
 function Navbar() {
   const router = useRouter();
 
-  const isActive = (route) => router.pathname === route;
+  const isActive = route => router.pathname === route;
 
   return (
     <Menu secondary style={{ marginLeft: "2rem" }}>
@@ -18,7 +18,7 @@ function Navbar() {
 
         <Link href="/signup">
           <Menu.Item header active={isActive("/signup")}>
-            Sign Up
+            Signup
           </Menu.Item>
         </Link>
       </Container>

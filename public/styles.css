@@ -1,5 +1,5 @@
 :root {
-  --progressBar: #54d1db;
+  --progressBar: #3943b7;
 }
 
 body {
@@ -7,13 +7,13 @@ body {
 }
 
 .spanLikesList:hover {
-  text-decoration: underline;
   cursor: pointer;
+  color: black;
 }
 
-.mySpinner {
+.spinner {
   border: 5px solid #f3f3f3;
-  border-top: 5px solid #16d47b;
+  border-top: 5px solid #db222a;
   border-radius: 50%;
   width: 50px;
   height: 50px;

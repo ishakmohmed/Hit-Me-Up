@@ -1,64 +1,57 @@
 import { List } from "semantic-ui-react";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import {
   MdHome,
   MdMessage,
-  MdNotifications,
-  MdPerson,
-  MdCancel,
+  MdNotificationsActive,
+  MdAccountCircle,
+  MdArrowForward,
 } from "react-icons/md";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 import { logoutUser } from "../../utils/authUser";
 
-function SideBar({
-  user: { unreadNotification, email, unreadMessage, username },
-}) {
+function SideMenu({ user: { email, username } }) {
   const router = useRouter();
+
   const isActive = (route) => router.pathname === route;
 
   return (
     <>
-      <List
-        style={{ paddingTop: "1rem" }}
-        size="big"
-        verticalAlign="middle"
-        selection
-      >
+      <List style={{ paddingTop: "1rem" }} selection>
         <Link href="/">
           <List.Item active={isActive("/")}>
-            <MdHome fontSize="2rem" color="#1E555C" />
+            <MdHome size="3rem" />
           </List.Item>
         </Link>
         <br />
 
-        <Link href="/messages">
-          <List.Item active={isActive("/messages")}>
-            <MdMessage fontSize="2rem" color="#1E555C" />
-          </List.Item>
-        </Link>
+        <List.Item active={isActive("/messages")} as="a" href="/messages">
+          <MdMessage size="3rem" />
+        </List.Item>
+
         <br />
 
         <Link href="/notifications">
           <List.Item active={isActive("/notifications")}>
-            <MdNotifications fontSize="2rem" color="#1E555C" />
+            <MdNotificationsActive size="3rem" />
           </List.Item>
         </Link>
         <br />
 
         <Link href={`/${username}`}>
           <List.Item active={router.query.username === username}>
-            <MdPerson fontSize="2rem" color="#1E555C" />
+            <MdAccountCircle size="3rem" />
           </List.Item>
         </Link>
         <br />
 
         <List.Item onClick={() => logoutUser(email)}>
-          <MdCancel fontSize="2rem" color="#1E555C" />
+          <MdArrowForward size="3rem" />
         </List.Item>
       </List>
     </>
   );
 }
 
-export default SideBar;
+export default SideMenu;

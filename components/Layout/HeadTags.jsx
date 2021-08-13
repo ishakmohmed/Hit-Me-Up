@@ -9,9 +9,8 @@ const HeadTags = () => (
       <link rel="stylesheet" type="text/css" href="/listMessages.css" />
       <link rel="stylesheet" type="text/css" href="/styles.css" />
       <link rel="stylesheet" type="text/css" href="/nprogress.css" />
-      <title>Hit Me Up!</title>
+      <title>Hit Me Up</title>
     </Head>
   </>
 );
-
 export default HeadTags;

@@ -1,3 +1,3 @@
-const Spinner = () => <div className="mySpinner" />;
+const Spinner = () => <div className="spinner" />;
 
 export default Spinner;

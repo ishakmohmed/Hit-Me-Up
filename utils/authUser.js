@@ -11,13 +11,12 @@ export const registerUser = async (
   setError,
   setLoading
 ) => {
-  setLoading(true);
-
   try {
     const res = await axios.post(`${baseUrl}/api/signup`, {
       user,
       profilePicUrl,
     });
+
     setToken(res.data);
   } catch (error) {
     const errorMsg = catchErrors(error);
@@ -29,9 +28,9 @@ export const registerUser = async (
 
 export const loginUser = async (user, setError, setLoading) => {
   setLoading(true);
-
   try {
     const res = await axios.post(`${baseUrl}/api/auth`, { user });
+
     setToken(res.data);
   } catch (error) {
     const errorMsg = catchErrors(error);
@@ -42,13 +41,15 @@ export const loginUser = async (user, setError, setLoading) => {
 };
 
 export const redirectUser = (ctx, location) => {
-  // if the user is in backend, else the user is in frontend...
   if (ctx.req) {
     ctx.res.writeHead(302, { Location: location });
     ctx.res.end();
-  } else {
-    Router.push(location);
-  }
+  } else Router.push(location);
+};
+
+const setToken = (token) => {
+  cookie.set("token", token);
+  Router.push("/");
 };
 
 export const logoutUser = (email) => {
@@ -56,9 +57,4 @@ export const logoutUser = (email) => {
   cookie.remove("token");
   Router.push("/login");
   Router.reload();
-};
-
-const setToken = (token) => {
-  cookie.set("token", token);
-  Router.push("/");
 };

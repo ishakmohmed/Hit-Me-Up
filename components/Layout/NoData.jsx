@@ -1,60 +1,47 @@
-import { Message, Button } from "semantic-ui-react";
+import { Message } from "semantic-ui-react";
 
 export const NoProfilePosts = () => (
   <>
-    <Message
-      info
-      icon="meh"
-      header="Sorry."
-      content="User has not posted anything yet!"
-    />
-    <Button
-      icon="long arrow alternate left"
-      content="Go Back."
-      as="a"
-      href="/"
-    />
+    <Message compact color="black" content="User has not posted anything" />
   </>
 );
 
 export const NoFollowData = ({ followersComponent, followingComponent }) => (
   <>
     {followersComponent && (
-      <Message
-        icon="user outline"
-        info
-        content="User does not have followers."
-      />
+      <Message compact color="black" content="User has no followers" />
     )}
-
+    
     {followingComponent && (
-      <Message
-        icon="user outline"
-        info
-        content="User does not follow any users."
-      />
+      <Message compact color="black" content="User does not follow anyone" />
     )}
   </>
 );
 
 export const NoMessages = () => (
   <Message
-    info
-    icon="telegram plane"
-    header="Sorry."
-    content="You have not messaged anyone yet. Search above to message someone!"
+    compact
+    color="black"
+    content="You have not message anyone, so search a user and start texting"
   />
 );
 
 export const NoPosts = () => (
   <Message
-    info
-    icon="meh"
-    header="Hey!"
-    content="No posts. Make sure you have followed someone."
+    compact
+    color="black"
+    content="No posts, because you have not followed anyone"
   />
 );
 
 export const NoProfile = () => (
-  <Message info icon="meh" header="Hey!" content="No profile found." />
+  <Message compact color="black" content="Profile not found" />
+);
+
+export const NoNotifications = () => (
+  <Message compact color="black" content="No notifications" />
+);
+
+export const NoPostFound = () => (
+  <Message compact color="black" content="No post found" />
 );

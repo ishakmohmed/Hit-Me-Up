@@ -5,6 +5,7 @@
   flex-direction: column;
   align-self: flex-end;
   color: #fff;
+  font-weight: bold;
 }
 
 .inlineContainer {
@@ -16,7 +17,7 @@
 }
 
 .inlineIcon {
-  width: 20px;
+  width: 2.5rem;
   object-fit: contain;
 }
 
@@ -25,9 +26,8 @@
   max-width: 700px;
   padding: 14px 18px;
   margin: 6px 8px;
-  background-color: #5b5377;
-  border-radius: 16px 16px 0 16px;
-  border: 1px solid #443f56;
+  background-color: #DB222A;
+  border-radius: 15px;
 }
 
 .otherBubble {
@@ -35,9 +35,8 @@
   max-width: 700px;
   padding: 14px 18px;
   margin: 6px 8px;
-  background-color: #6c8ea4;
-  border-radius: 16px 16px 16px 0;
-  border: 1px solid #54788e;
+  background-color: #3943B7;
+  border-radius: 15px;
 }
 
 .own {
@@ -51,5 +50,6 @@
 span.own,
 span.other {
   font-size: 14px;
-  color: grey;
+  font-style: italic;
+  color: black;
 }

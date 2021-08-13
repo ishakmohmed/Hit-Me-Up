@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { Form, Button, Image, Divider, Message, Icon } from "semantic-ui-react";
 import uploadPic from "../../utils/uploadPicToCloudinary";
 import { submitNewPost } from "../../utils/postActions";
+import CropImageModal from "./CropImageModal";
 
 function CreatePost({ user, setPosts }) {
   const [newPost, setNewPost] = useState({ text: "", location: "" });
@@ -14,23 +15,70 @@ function CreatePost({ user, setPosts }) {
   const [media, setMedia] = useState(null);
   const [mediaPreview, setMediaPreview] = useState(null);
 
-  const handleChange = (e) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleChange = e => {
     const { name, value, files } = e.target;
 
     if (name === "media") {
-      setMedia(files[0]);
-      setMediaPreview(URL.createObjectURL(files[0]));
+      if (files && files.length > 0) {
+        setMedia(files[0]);
+        setMediaPreview(URL.createObjectURL(files[0]));
+      }
     }
 
-    setNewPost((prev) => ({ ...prev, [name]: value }));
+    setNewPost(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const addStyles = () => ({
+    textAlign: "center",
+    height: "150px",
+    width: "150px",
+    border: "dotted",
+    paddingTop: media === null && "60px",
+    cursor: "pointer",
+    borderColor: highlighted ? "green" : "black"
+  });
+
+  const handleSubmit = async e => {
     e.preventDefault();
+    setLoading(true);
+    let picUrl;
+
+    if (media !== null) {
+      picUrl = await uploadPic(media);
+      if (!picUrl) {
+        setLoading(false);
+        return setError("Error Uploading Image");
+      }
+    }
+
+    await submitNewPost(
+      newPost.text,
+      newPost.location,
+      picUrl,
+      setPosts,
+      setNewPost,
+      setError
+    );
+
+    setMedia(null);
+    mediaPreview && URL.revokeObjectURL(mediaPreview);
+    setTimeout(() => setMediaPreview(null), 3000);
+    setLoading(false);
   };
-  
+
   return (
     <>
+      {showModal && (
+        <CropImageModal
+          mediaPreview={mediaPreview}
+          setMedia={setMedia}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+      )}
+
       <Form error={error !== null} onSubmit={handleSubmit}>
         <Message
           error
@@ -73,24 +121,16 @@ function CreatePost({ user, setPosts }) {
 
         <div
           onClick={() => inputRef.current.click()}
-          style={{
-            textAlign: "center",
-            height: "150px",
-            width: "150px",
-            border: "dotted",
-            paddingTop: media === null && "60px",
-            cursor: "pointer",
-            borderColor: highlighted ? "green" : "black",
-          }}
-          onDragOver={(e) => {
+          style={addStyles()}
+          onDragOver={e => {
             e.preventDefault();
             setHighlighted(true);
           }}
-          onDragLeave={(e) => {
+          onDragLeave={e => {
             e.preventDefault();
             setHighlighted(false);
           }}
-          onDrop={(e) => {
+          onDrop={e => {
             e.preventDefault();
             setHighlighted(true);
 
@@ -101,24 +141,32 @@ function CreatePost({ user, setPosts }) {
           }}
         >
           {media === null ? (
-            <Icon
-              name="plus"
-              onClick={() => inputRef.current.click()}
-              size="big"
-            />
+            <Icon name="plus" size="big" />
           ) : (
-            <>
-              <Image
-                style={{ height: "150px", width: "150px" }}
-                onClick={() => inputRef.current.click()}
-                src={mediaPreview}
-                alt="img"
-                centered
-                size="medium"
-              />
-            </>
+            <Image
+              style={{ height: "150px", width: "150px" }}
+              src={mediaPreview}
+              alt="PostImage"
+              centered
+              size="medium"
+            />
           )}
         </div>
+
+        {mediaPreview !== null && (
+          <>
+            <Divider hidden />
+
+            <Button
+              content="Crop Image"
+              type="button"
+              primary
+              circular
+              onClick={() => setShowModal(true)}
+            />
+          </>
+        )}
+
         <Divider hidden />
 
         <Button
