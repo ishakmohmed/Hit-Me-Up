@@ -1,7 +1,8 @@
 import axios from "axios";
+import cookie from "js-cookie";
+
 import baseUrl from "./baseUrl";
 import catchErrors from "./catchErrors";
-import cookie from "js-cookie";
 
 export const Axios = axios.create({
   baseURL: `${baseUrl}/api/posts`,
@@ -42,9 +43,7 @@ export const likePost = async (postId, userId, setLikes, like = true) => {
     if (like) {
       await Axios.post(`/like/${postId}`);
       setLikes(prev => [...prev, { user: userId }]);
-    }
-    //
-    else if (!like) {
+    } else if (!like) {
       await Axios.put(`/unlike/${postId}`);
       setLikes(prev => prev.filter(like => like.user !== userId));
     }
@@ -56,7 +55,6 @@ export const likePost = async (postId, userId, setLikes, like = true) => {
 export const postComment = async (postId, user, text, setComments, setText) => {
   try {
     const res = await Axios.post(`/comment/${postId}`, { text });
-
     const newComment = {
       _id: res.data,
       user,

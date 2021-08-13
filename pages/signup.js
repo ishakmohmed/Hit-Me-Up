@@ -16,8 +16,6 @@ function Signup() {
     email: "",
     password: "",
     bio: "",
-    facebook: "",
-    youtube: "",
     twitter: "",
     instagram: ""
   });

@@ -39,7 +39,6 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
       const res = await axios.get(`${baseUrl}/api/auth`, {
         headers: { Authorization: token }
       });
-
       const { user, userFollowStats } = res.data;
 
       if (user) !protectedRoutes && redirectUser(ctx, "/");
