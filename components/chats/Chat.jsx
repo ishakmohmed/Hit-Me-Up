@@ -38,7 +38,7 @@ function Chat({ chat, connectedUsers, deleteChat }) {
                   }}
                 >
                   <Icon
-                    name="trash"
+                    name="trash alternate"
                     color="red"
                     size="large"
                     onClick={() => deleteChat(chat.messagesWith)}

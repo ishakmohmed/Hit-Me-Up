@@ -1,5 +1,5 @@
-import React from "react";
 import { Divider, Feed } from "semantic-ui-react";
+
 import calculateTime from "../../utils/calculateTime";
 
 function CommentNotification({ notification }) {
@@ -13,7 +13,8 @@ function CommentNotification({ notification }) {
               <Feed.User as="a" href={`/${notification.user.username}`}>
                 {notification.user.name}
               </Feed.User>{" "}
-              commented on your <a href={`/post/${notification.post._id}`}>post.</a>
+              commented on your{" "}
+              <a href={`/post/${notification.post._id}`}>post</a>
               <Feed.Date>{calculateTime(notification.date)}</Feed.Date>
             </>
           </Feed.Summary>

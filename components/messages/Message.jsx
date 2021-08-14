@@ -26,7 +26,7 @@ function Message({ message, user, deleteMsg, bannerProfilePic, divRef }) {
           <Popup
             trigger={
               <Icon
-                name="trash"
+                name="trash alternate"
                 color="red"
                 style={{ cursor: "pointer" }}
                 onClick={() => deleteMsg(message._id)}
