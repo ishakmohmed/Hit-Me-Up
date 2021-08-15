@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Card,
   Icon,
@@ -10,10 +10,11 @@ import {
   Header,
   Modal,
 } from "semantic-ui-react";
+import Link from "next/link";
+
 import PostComments from "./PostComments";
 import CommentInputField from "./CommentInputField";
 import calculateTime from "../../utils/calculateTime";
-import Link from "next/link";
 import { deletePost, likePost } from "../../utils/postActions";
 import LikesList from "./LikesList";
 import ImageModal from "./ImageModal";
@@ -21,17 +22,11 @@ import NoImageModal from "./NoImageModal";
 
 function CardPost({ post, user, setPosts, setShowToastr, socket }) {
   const [likes, setLikes] = useState(post.likes);
-
   const isLiked =
     likes.length > 0 &&
     likes.filter((like) => like.user === user._id).length > 0;
-
   const [comments, setComments] = useState(post.comments);
-
-  const [error, setError] = useState(null);
-
   const [showModal, setShowModal] = useState(false);
-
   const addPropsToModal = () => ({
     post,
     user,
@@ -62,7 +57,7 @@ function CardPost({ post, user, setPosts, setShowToastr, socket }) {
       )}
 
       <Segment basic>
-        <Card color="teal" fluid>
+        <Card color="red" fluid>
           {post.picUrl && (
             <Image
               src={post.picUrl}
@@ -97,12 +92,9 @@ function CardPost({ post, user, setPosts, setShowToastr, socket }) {
                     />
                   }
                 >
-                  <Header as="h4" content="Are you sure?" />
-                  <p>This action is irreversible!</p>
-
+                  <Header as="h4" content="Confirm?" />
                   <Button
                     color="red"
-                    icon="trash alternate"
                     content="Delete"
                     onClick={() =>
                       deletePost(post._id, setPosts, setShowToastr)
@@ -114,19 +106,25 @@ function CardPost({ post, user, setPosts, setShowToastr, socket }) {
 
             <Card.Header>
               <Link href={`/${post.user.username}`}>
-                <a>{post.user.name}</a>
+                <h4>
+                  <a style={{ color: "#3943B7" }}>{post.user.name}</a>
+                </h4>
               </Link>
             </Card.Header>
-
             <Card.Meta>{calculateTime(post.createdAt)}</Card.Meta>
 
-            {post.location && <Card.Meta content={post.location} />}
+            {post.location && (
+              <Card.Meta
+                style={{ fontStyle: "italic" }}
+                content={post.location}
+              />
+            )}
 
             <Card.Description
               style={{
-                fontSize: "17px",
-                letterSpacing: "0.1px",
-                wordSpacing: "0.35px",
+                fontSize: "1.25rem",
+                fontWeight: "bold",
+                color: "black",
               }}
             >
               {post.text}
@@ -137,6 +135,7 @@ function CardPost({ post, user, setPosts, setShowToastr, socket }) {
             <Icon
               name={isLiked ? "heart" : "heart outline"}
               color="red"
+              size="large"
               style={{ cursor: "pointer" }}
               onClick={() => {
                 if (socket.current) {
@@ -147,15 +146,11 @@ function CardPost({ post, user, setPosts, setShowToastr, socket }) {
                   });
 
                   socket.current.on("postLiked", () => {
-                    if (isLiked) {
+                    if (isLiked)
                       setLikes((prev) =>
                         prev.filter((like) => like.user !== user._id)
                       );
-                    }
-                    //
-                    else {
-                      setLikes((prev) => [...prev, { user: user._id }]);
-                    }
+                    else setLikes((prev) => [...prev, { user: user._id }]);
                   });
                 } else {
                   likePost(
@@ -167,7 +162,6 @@ function CardPost({ post, user, setPosts, setShowToastr, socket }) {
                 }
               }}
             />
-
             <LikesList
               postId={post._id}
               trigger={
@@ -177,12 +171,6 @@ function CardPost({ post, user, setPosts, setShowToastr, socket }) {
                   </span>
                 )
               }
-            />
-
-            <Icon
-              name="comment outline"
-              style={{ marginLeft: "7px" }}
-              color="blue"
             />
 
             {comments.length > 0 &&
@@ -201,16 +189,14 @@ function CardPost({ post, user, setPosts, setShowToastr, socket }) {
 
             {comments.length > 3 && (
               <Button
-                content="View More"
-                color="teal"
-                basic
+                content="More"
+                color="blue"
                 circular
                 onClick={() => setShowModal(true)}
               />
             )}
 
             <Divider hidden />
-
             <CommentInputField
               user={user}
               postId={post._id}
