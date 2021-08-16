@@ -20,7 +20,7 @@ function PostComments({ comment, user, setComments, postId }) {
                 <Comment.Metadata>
                   {calculateTime(comment.date)}
                 </Comment.Metadata>
-                <Comment.Text style={{ fontStyle: "italic" }}>
+                <Comment.Text style={{ fontSize: "1rem" }}>
                   {comment.text}
                 </Comment.Text>
               </div>
