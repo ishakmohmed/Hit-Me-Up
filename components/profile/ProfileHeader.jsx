@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Segment, Image, Grid, Divider, Header, Button, List } from "semantic-ui-react";
+import {
+  Segment,
+  Image,
+  Grid,
+  Divider,
+  Header,
+  Button,
+  List,
+} from "semantic-ui-react";
 
 import { followUser, unfollowUser } from "../../utils/profileActions";
 
@@ -7,13 +15,13 @@ function ProfileHeader({
   profile,
   ownAccount,
   loggedUserFollowStats,
-  setUserFollowStats
+  setUserFollowStats,
 }) {
   const [loading, setLoading] = useState(false);
   const isFollowing =
     loggedUserFollowStats.following.length > 0 &&
     loggedUserFollowStats.following.filter(
-      following => following.user === profile.user._id
+      (following) => following.user === profile.user._id
     ).length > 0;
 
   return (
@@ -23,14 +31,14 @@ function ProfileHeader({
           <Grid.Column width={11}>
             <Grid.Row>
               <Header
-                as="h2"
+                as="h3"
                 content={profile.user.name}
                 style={{ marginBottom: "5px" }}
               />
             </Grid.Row>
 
             <Grid.Row stretched>
-              {profile.bio}
+              <p style={{ color: "gray" }}>{profile.bio}</p>
               <Divider hidden />
             </Grid.Row>
 
@@ -38,36 +46,19 @@ function ProfileHeader({
               {profile.social ? (
                 <List>
                   <List.Item>
-                    <List.Icon name="mail" />
-                    <List.Content content={profile.user.email} />
+                    <List.Icon name="mail" color="blue" />
+                    <List.Content
+                      content={profile.user.email}
+                      style={{ fontWeight: "bold" }}
+                    />
                   </List.Item>
-
-                  {profile.social.facebook && (
-                    <List.Item>
-                      <List.Icon name="facebook" color="blue" />
-                      <List.Content
-                        style={{ color: "blue" }}
-                        content={profile.social.facebook}
-                      />
-                    </List.Item>
-                  )}
 
                   {profile.social.instagram && (
                     <List.Item>
                       <List.Icon name="instagram" color="red" />
                       <List.Content
-                        style={{ color: "blue" }}
+                        style={{ color: "blue", fontWeight: "bold" }}
                         content={profile.social.instagram}
-                      />
-                    </List.Item>
-                  )}
-
-                  {profile.social.youtube && (
-                    <List.Item>
-                      <List.Icon name="youtube" color="red" />
-                      <List.Content
-                        style={{ color: "blue" }}
-                        content={profile.social.youtube}
                       />
                     </List.Item>
                   )}
@@ -76,21 +67,21 @@ function ProfileHeader({
                     <List.Item>
                       <List.Icon name="twitter" color="blue" />
                       <List.Content
-                        style={{ color: "blue" }}
+                        style={{ color: "blue", fontWeight: "bold" }}
                         content={profile.social.twitter}
                       />
                     </List.Item>
                   )}
                 </List>
               ) : (
-                <>No Social Media Links </>
+                <p style={{ fontWeight: "bold"}}>No social media handles :(</p>
               )}
             </Grid.Row>
           </Grid.Column>
 
           <Grid.Column width={5} stretched style={{ textAlign: "center" }}>
             <Grid.Row>
-              <Image size="large" avatar src={profile.user.profilePicUrl} />
+              <Image size="small" avatar src={profile.user.profilePicUrl} />
             </Grid.Row>
             <br />
 
@@ -100,7 +91,6 @@ function ProfileHeader({
                 loading={loading}
                 disabled={loading}
                 content={isFollowing ? "Following" : "Follow"}
-                icon={isFollowing ? "check circle" : "add user"}
                 color={isFollowing ? "instagram" : "twitter"}
                 onClick={async () => {
                   setLoading(true);
