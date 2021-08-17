@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Form, Segment } from "semantic-ui-react";
 
 function MessageInputField({ sendMsg }) {
@@ -7,10 +7,10 @@ function MessageInputField({ sendMsg }) {
 
   return (
     <div style={{ position: "sticky", bottom: "0" }}>
-      <Segment secondary color="teal" attached="bottom">
+      <Segment secondary color="red" attached="bottom">
         <Form
           reply
-          onSubmit={e => {
+          onSubmit={(e) => {
             e.preventDefault();
             sendMsg(text);
             setText("");
@@ -18,14 +18,14 @@ function MessageInputField({ sendMsg }) {
         >
           <Form.Input
             size="large"
-            placeholder="Send New Message"
+            placeholder="Compose a text..."
             value={text}
-            onChange={e => setText(e.target.value)}
+            onChange={(e) => setText(e.target.value)}
             action={{
-              color: "blue",
-              icon: "telegram plane",
+              color: "red",
+              icon: "chevron circle up",
               disabled: text === "",
-              loading: loading
+              loading: loading,
             }}
           />
         </Form>

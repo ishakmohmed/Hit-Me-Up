@@ -30,11 +30,18 @@ function ImageModal({
               <Image floated="left" avatar src={post.user.profilePicUrl} />
               <Card.Header>
                 <Link href={`/${post.user.username}`}>
-                  <a>{post.user.name}</a>
+                  <h4>
+                    <a style={{ color: "#3943B7" }}>{post.user.name}</a>
+                  </h4>
                 </Link>
               </Card.Header>
               <Card.Meta>{calculateTime(post.createdAt)}</Card.Meta>
-              {post.location && <Card.Meta content={post.location} />}
+              {post.location && (
+                <Card.Meta
+                  style={{ fontStyle: "italic" }}
+                  content={post.location}
+                />
+              )}
               <Card.Description
                 style={{
                   fontSize: "17px",
@@ -49,6 +56,7 @@ function ImageModal({
               <Icon
                 name={isLiked ? "heart" : "heart outline"}
                 color="red"
+                size="large"
                 style={{ cursor: "pointer" }}
                 onClick={() =>
                   likePost(post._id, user._id, setLikes, isLiked ? false : true)

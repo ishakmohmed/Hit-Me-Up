@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Icon, Popup } from "semantic-ui-react";
+
 import calculateTime from "../../utils/calculateTime";
 
 function Message({ message, user, deleteMsg, bannerProfilePic, divRef }) {
   const [deleteIcon, showDeleteIcon] = useState(false);
-
   const ifYouSender = message.sender === user._id;
 
   return (
@@ -32,13 +32,15 @@ function Message({ message, user, deleteMsg, bannerProfilePic, divRef }) {
                 onClick={() => deleteMsg(message._id)}
               />
             }
-            content="This will only delete the message from your inbox!"
+            content="This does not delete the message from the receiver's account"
             position="top right"
           />
         )}
       </div>
 
-      <span className={ifYouSender ? "own" : "other"}>{calculateTime(message.date)}</span>
+      <span className={ifYouSender ? "own" : "other"}>
+        {calculateTime(message.date)}
+      </span>
     </div>
   );
 }
