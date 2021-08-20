@@ -1,6 +1,7 @@
 import { Segment, TransitionablePortal, Icon, Feed } from "semantic-ui-react";
-import newMsgSound from "../../utils/newMsgSound";
 import { useRouter } from "next/router";
+
+import newMsgSound from "../../utils/newMsgSound";
 import calculateTime from "../../utils/calculateTime";
 
 function NotificationPortal({
@@ -9,7 +10,6 @@ function NotificationPortal({
   showNotificationPopup
 }) {
   const router = useRouter();
-
   const { name, profilePicUrl, username, postId } = newNotification;
 
   return (

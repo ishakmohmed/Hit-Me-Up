@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Form, Button, Message, Segment, Divider } from "semantic-ui-react";
 import CommonInputs from "../components/common/CommonInputs";
 import ImageDropDiv from "../components/common/ImageDropDiv";
-import { HeaderMessage, FooterMessage } from "../components/common/WelcomeMessage";
+import { FooterMessage } from "../components/common/WelcomeMessage";
 import axios from "axios";
 import baseUrl from "../utils/baseUrl";
 import { registerUser } from "../utils/authUser";
@@ -104,7 +104,6 @@ function Signup() {
 
   return (
     <>
-      <HeaderMessage />
       <Form loading={formLoading} error={errorMsg !== null} onSubmit={handleSubmit}>
         <Message
           error
