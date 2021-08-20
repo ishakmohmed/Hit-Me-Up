@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { List, Image, Search } from "semantic-ui-react";
 import axios from "axios";
 import cookie from "js-cookie";
 import { useRouter } from "next/router";
+
 import baseUrl from "../../utils/baseUrl";
+
 let cancel;
 
 function ChatListSearch({ chats, setChats }) {
@@ -12,9 +14,11 @@ function ChatListSearch({ chats, setChats }) {
   const [results, setResults] = useState([]);
   const router = useRouter();
 
-  const handleChange = async e => {
+  const handleChange = async (e) => {
     const { value } = e.target;
+
     setText(value);
+
     if (value.length === 0) return;
     if (value.trim().length === 0) return;
 
@@ -22,14 +26,14 @@ function ChatListSearch({ chats, setChats }) {
 
     try {
       cancel && cancel();
+
       const CancelToken = axios.CancelToken;
       const token = cookie.get("token");
-
       const res = await axios.get(`${baseUrl}/api/search/${value}`, {
         headers: { Authorization: token },
-        cancelToken: new CancelToken(canceler => {
+        cancelToken: new CancelToken((canceler) => {
           cancel = canceler;
-        })
+        }),
       });
 
       if (res.data.length === 0) {
@@ -46,25 +50,22 @@ function ChatListSearch({ chats, setChats }) {
     setLoading(false);
   };
 
-  const addChat = result => {
+  const addChat = (result) => {
     const alreadyInChat =
       chats.length > 0 &&
-      chats.filter(chat => chat.messagesWith === result._id).length > 0;
+      chats.filter((chat) => chat.messagesWith === result._id).length > 0;
 
-    if (alreadyInChat) {
-      return router.push(`/messages?message=${result._id}`);
-    }
-    //
+    if (alreadyInChat) return router.push(`/messages?message=${result._id}`);
     else {
       const newChat = {
         messagesWith: result._id,
         name: result.name,
         profilePicUrl: result.profilePicUrl,
         lastMessage: "",
-        date: Date.now()
+        date: Date.now(),
       };
 
-      setChats(prev => [newChat, ...prev]);
+      setChats((prev) => [newChat, ...prev]);
 
       return router.push(`/messages?message=${result._id}`);
     }
@@ -80,6 +81,9 @@ function ChatListSearch({ chats, setChats }) {
         results.length > 0 && setResults([]);
         loading && setLoading(false);
         setText("");
+      }}
+      style={{
+        margin: "3rem 0",
       }}
       loading={loading}
       value={text}
