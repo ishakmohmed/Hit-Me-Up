@@ -1,7 +1,14 @@
 import React, { createRef } from "react";
 import HeadTags from "./HeadTags";
 import Navbar from "./Navbar";
-import { Container, Visibility, Grid, Sticky, Ref, Segment } from "semantic-ui-react";
+import {
+  Container,
+  Visibility,
+  Grid,
+  Sticky,
+  Ref,
+  Segment,
+} from "semantic-ui-react";
 import nprogress from "nprogress";
 import Router, { useRouter } from "next/router";
 import SideMenu from "./SideMenu";
@@ -10,7 +17,7 @@ import MobileHeader from "./MobileHeader";
 import { createMedia } from "@artsy/fresnel";
 
 const AppMedia = createMedia({
-  breakpoints: { zero: 0, mobile: 549, tablet: 850, computer: 1080 }
+  breakpoints: { zero: 0, mobile: 549, tablet: 850, computer: 1080 },
 });
 
 const mediaStyles = AppMedia.createMediaStyle();
@@ -47,7 +54,9 @@ function Layout({ children, user }) {
                         </Grid.Column>
 
                         <Grid.Column width={10}>
-                          <Visibility context={contextRef}>{children}</Visibility>
+                          <Visibility context={contextRef}>
+                            {children}
+                          </Visibility>
                         </Grid.Column>
 
                         <Grid.Column floated="left" width={3}>
@@ -80,7 +89,9 @@ function Layout({ children, user }) {
                         </Grid.Column>
 
                         <Grid.Column width={15}>
-                          <Visibility context={contextRef}>{children}</Visibility>
+                          <Visibility context={contextRef}>
+                            {children}
+                          </Visibility>
                         </Grid.Column>
                       </>
                     ) : (
@@ -105,7 +116,9 @@ function Layout({ children, user }) {
                         </Grid.Column>
 
                         <Grid.Column width={14}>
-                          <Visibility context={contextRef}>{children}</Visibility>
+                          <Visibility context={contextRef}>
+                            {children}
+                          </Visibility>
                         </Grid.Column>
                       </>
                     ) : (

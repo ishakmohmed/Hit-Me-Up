@@ -74,14 +74,18 @@ function ProfileHeader({
                   )}
                 </List>
               ) : (
-                <p style={{ fontWeight: "bold"}}>No social media handles :(</p>
+                <p style={{ fontWeight: "bold" }}>No social media handles :(</p>
               )}
             </Grid.Row>
           </Grid.Column>
 
           <Grid.Column width={5} stretched style={{ textAlign: "center" }}>
             <Grid.Row>
-              <Image size="small" avatar src={profile.user.profilePicUrl} />
+              <Image
+                size="small"
+                src={profile.user.profilePicUrl}
+                style={{ borderRadius: "5px" }}
+              />
             </Grid.Row>
             <br />
 

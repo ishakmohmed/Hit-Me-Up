@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Form, Button, Message, Divider } from "semantic-ui-react";
+import { Form, Button, Divider } from "semantic-ui-react";
 
 import ImageDropDiv from "../common/ImageDropDiv";
 import CommonInputs from "../common/CommonInputs";
@@ -11,7 +11,7 @@ function UpdateProfile({ Profile }) {
     profilePicUrl: Profile.user.profilePicUrl,
     bio: Profile.bio || "",
     instagram: (Profile.social && Profile.social.instagram) || "",
-    twitter: (Profile.social && Profile.social.twitter) || ""
+    twitter: (Profile.social && Profile.social.twitter) || "",
   });
   const [errorMsg, setErrorMsg] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -21,7 +21,7 @@ function UpdateProfile({ Profile }) {
   const [media, setMedia] = useState(null);
   const [mediaPreview, setMediaPreview] = useState(null);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value, files } = e.target;
 
     if (name === "media") {
@@ -29,7 +29,7 @@ function UpdateProfile({ Profile }) {
       setMediaPreview(URL.createObjectURL(files[0]));
     }
 
-    setProfile(prev => ({ ...prev, [name]: value }));
+    setProfile((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -37,7 +37,7 @@ function UpdateProfile({ Profile }) {
       <Form
         error={errorMsg !== null}
         loading={loading}
-        onSubmit={async e => {
+        onSubmit={async (e) => {
           e.preventDefault();
           setLoading(true);
 
@@ -71,7 +71,6 @@ function UpdateProfile({ Profile }) {
         <Divider hidden />
         <Button
           color="blue"
-          icon="pencil alternate"
           disabled={profile.bio === "" || loading}
           content="Submit"
           type="submit"
