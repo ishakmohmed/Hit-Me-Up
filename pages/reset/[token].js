@@ -48,22 +48,14 @@ function TokenPage() {
     <>
       {success ? (
         <Message
-          attached
-          success
-          size="large"
-          header="Password has been reset"
-          icon="check"
-          content="Login now"
+          compact
+          color="black"
+          content="Password has been reset"
           style={{ cursor: "pointer" }}
           onClick={() => router.push("/login")}
         />
       ) : (
-        <Message
-          attached
-          icon="settings"
-          header="Reset password"
-          color="teal"
-        />
+        <Message compact content="Reset password" color="black" />
       )}
 
       {!success && (
@@ -72,15 +64,14 @@ function TokenPage() {
           onSubmit={resetPassword}
           error={errorMsg !== null}
         >
-          <Message error header="Oops!" content={errorMsg} />
+          <Message compact color="black" content={errorMsg} />
           <Segment>
             <Form.Input
               fluid
               icon="eye"
               type="password"
-              iconPosition="left"
-              label="New password"
-              placeholder="Enter new password"
+              iconPosition="right"
+              label="New Password"
               name="field1"
               onChange={handleChange}
               value={field1}
@@ -90,9 +81,8 @@ function TokenPage() {
               fluid
               icon="eye"
               type="password"
-              iconPosition="left"
-              label="Confirm password"
-              placeholder="Confirm new password"
+              iconPosition="right"
+              label="Confirm Password"
               name="field2"
               onChange={handleChange}
               value={field2}
@@ -101,9 +91,8 @@ function TokenPage() {
             <Divider hidden />
             <Button
               disabled={field1 === "" || field2 === "" || loading}
-              icon="configure"
               type="submit"
-              color="orange"
+              color="red"
               content="Reset"
             />
           </Segment>
