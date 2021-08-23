@@ -1,32 +1,37 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { parseCookies } from "nookies";
-import { Card, Icon, Image, Divider, Segment, Container } from "semantic-ui-react";
+import {
+  Card,
+  Icon,
+  Image,
+  Divider,
+  Segment,
+  Container,
+} from "semantic-ui-react";
+import Link from "next/link";
+
 import PostComments from "../../components/post/PostComments";
 import CommentInputField from "../../components/post/CommentInputField";
 import LikesList from "../../components/post/LikesList";
-import Link from "next/link";
 import { likePost } from "../../utils/postActions";
 import calculateTime from "../../utils/calculateTime";
 import baseUrl from "../../utils/baseUrl";
 import { NoPostFound } from "../../components/layout/NoData";
 
 function PostPage({ post, errorLoading, user }) {
-  if (errorLoading) {
-    return <NoPostFound />;
-  }
+  if (errorLoading) return <NoPostFound />;
 
   const [likes, setLikes] = useState(post.likes);
-
   const isLiked =
-    likes.length > 0 && likes.filter(like => like.user === user._id).length > 0;
-
+    likes.length > 0 &&
+    likes.filter((like) => like.user === user._id).length > 0;
   const [comments, setComments] = useState(post.comments);
 
   return (
     <Container text>
       <Segment basic>
-        <Card color="teal" fluid>
+        <Card color="red" fluid>
           {post.picUrl && (
             <Image
               src={post.picUrl}
@@ -40,38 +45,48 @@ function PostPage({ post, errorLoading, user }) {
           )}
 
           <Card.Content>
-            <Image floated="left" src={post.user.profilePicUrl} avatar circular />
+            <Image
+              floated="left"
+              src={post.user.profilePicUrl}
+              avatar
+              circular
+            />
             <Card.Header>
               <Link href={`/${post.user.username}`}>
-                <a>{post.user.name}</a>
+                <h4>
+                  <a style={{ color: "#3943B7" }}>{post.user.name}</a>
+                </h4>
               </Link>
             </Card.Header>
-
             <Card.Meta>{calculateTime(post.createdAt)}</Card.Meta>
 
-            {post.location && <Card.Meta content={post.location} />}
+            {post.location && (
+              <Card.Meta
+                style={{ fontStyle: "italic" }}
+                content={post.location}
+              />
+            )}
 
             <Card.Description
               style={{
-                fontSize: "17px",
-                letterSpacing: "0.1px",
-                wordSpacing: "0.35px"
+                fontSize: "1.25rem",
+                fontWeight: "bold",
+                color: "black",
               }}
             >
               {post.text}
             </Card.Description>
           </Card.Content>
-
           <Card.Content extra>
             <Icon
               name={isLiked ? "heart" : "heart outline"}
               color="red"
+              size="large"
               style={{ cursor: "pointer" }}
               onClick={() =>
                 likePost(post._id, user._id, setLikes, isLiked ? false : true)
               }
             />
-
             <LikesList
               postId={post._id}
               trigger={
@@ -82,11 +97,8 @@ function PostPage({ post, errorLoading, user }) {
                 )
               }
             />
-
-            <Icon name="comment outline" style={{ marginLeft: "7px" }} color="blue" />
-
             {comments.length > 0 &&
-              comments.map(comment => (
+              comments.map((comment) => (
                 <PostComments
                   key={comment._id}
                   comment={comment}
@@ -95,10 +107,12 @@ function PostPage({ post, errorLoading, user }) {
                   setComments={setComments}
                 />
               ))}
-
             <Divider hidden />
-
-            <CommentInputField user={user} postId={post._id} setComments={setComments} />
+            <CommentInputField
+              user={user}
+              postId={post._id}
+              setComments={setComments}
+            />
           </Card.Content>
         </Card>
       </Segment>
@@ -107,13 +121,12 @@ function PostPage({ post, errorLoading, user }) {
   );
 }
 
-PostPage.getInitialProps = async ctx => {
+PostPage.getInitialProps = async (ctx) => {
   try {
     const { postId } = ctx.query;
     const { token } = parseCookies(ctx);
-
     const res = await axios.get(`${baseUrl}/api/posts/${postId}`, {
-      headers: { Authorization: token }
+      headers: { Authorization: token },
     });
 
     return { post: res.data };
