@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Form, Modal, Segment, List, Icon } from "semantic-ui-react";
 import Link from "next/link";
+
 import calculateTime from "../../utils/calculateTime";
 
 function MessageNotificationModal({
@@ -12,7 +13,6 @@ function MessageNotificationModal({
 }) {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
-
   const onModalClose = () => showNewMessageModal(false);
 
   const formSubmit = e => {
@@ -40,16 +40,13 @@ function MessageNotificationModal({
         closeIcon
         closeOnDimmerClick
       >
-        <Modal.Header content={`New Message from ${newMessageReceived.senderName}`} />
-
+        <Modal.Header content={`New message from ${newMessageReceived.senderName}`} />
         <Modal.Content>
           <div className="bubbleWrapper">
             <div className="inlineContainer">
               <img className="inlineIcon" src={newMessageReceived.senderProfilePic} />
             </div>
-
             <div className="otherBubble other">{newMessageReceived.msg}</div>
-
             <span className="other">{calculateTime(newMessageReceived.date)}</span>
           </div>
 
