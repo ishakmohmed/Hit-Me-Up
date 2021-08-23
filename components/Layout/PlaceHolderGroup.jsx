@@ -22,7 +22,6 @@ export const PlaceHolderPosts = () =>
 
 export const EndMessage = () => (
   <Container textAlign="center">
-    <Icon name="refresh" size="large" />
     <Divider hidden />
   </Container>
 );
