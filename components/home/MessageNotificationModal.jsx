@@ -9,20 +9,20 @@ function MessageNotificationModal({
   showNewMessageModal,
   newMessageModal,
   newMessageReceived,
-  user
+  user,
 }) {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
   const onModalClose = () => showNewMessageModal(false);
 
-  const formSubmit = e => {
+  const formSubmit = (e) => {
     e.preventDefault();
 
     if (socket.current) {
       socket.current.emit("sendMsgFromNotification", {
         userId: user._id,
         msgSendToUserId: newMessageReceived.sender,
-        msg: text
+        msg: text,
       });
 
       socket.current.on("msgSentFromNotification", () => {
@@ -40,42 +40,45 @@ function MessageNotificationModal({
         closeIcon
         closeOnDimmerClick
       >
-        <Modal.Header content={`New message from ${newMessageReceived.senderName}`} />
+        <Modal.Header
+          content={`New message from ${newMessageReceived.senderName}`}
+        />
         <Modal.Content>
           <div className="bubbleWrapper">
             <div className="inlineContainer">
-              <img className="inlineIcon" src={newMessageReceived.senderProfilePic} />
+              <img
+                className="inlineIcon"
+                src={newMessageReceived.senderProfilePic}
+              />
             </div>
             <div className="otherBubble other">{newMessageReceived.msg}</div>
-            <span className="other">{calculateTime(newMessageReceived.date)}</span>
+            <span className="other">
+              {calculateTime(newMessageReceived.date)}
+            </span>
           </div>
-
           <div style={{ position: "sticky", bottom: "0px" }}>
-            <Segment secondary color="teal" attached="bottom">
+            <Segment secondary color="red" attached="bottom">
               <Form reply onSubmit={formSubmit}>
                 <Form.Input
-                  size="large"
-                  placeholder="Send New Message"
+                  size="small"
+                  placeholder="Reply..."
                   value={text}
-                  onChange={e => setText(e.target.value)}
+                  onChange={(e) => setText(e.target.value)}
                   action={{
-                    color: "blue",
-                    icon: "telegram plane",
+                    color: "red",
+                    icon: "chevron circle up",
                     disabled: text === "",
-                    loading: loading
+                    loading: loading,
                   }}
                 />
               </Form>
             </Segment>
           </div>
-
           <div style={{ marginTop: "5px" }}>
             <Link href={`/messages?message=${newMessageReceived.sender}`}>
-              <a>View All Messages</a>
+              <a>Go to inbox</a>
             </Link>
-
             <br />
-
             <Instructions username={user.username} />
           </div>
         </Modal.Content>
@@ -87,33 +90,13 @@ function MessageNotificationModal({
 const Instructions = ({ username }) => (
   <List>
     <List.Item>
-      <Icon name="help" />
       <List.Content>
-        <List.Header>
-          If you do not like this popup to appear when you receive a new message:
-        </List.Header>
-      </List.Content>
-    </List.Item>
-
-    <List.Item>
-      <Icon name="hand point right" />
-      <List.Content>
-        You can disable it by going to
+        If you don't like to receive this annoying popup, go to
         <Link href={`/${username}`}>
-          <a> Account </a>
+          <a> Profile </a>
         </Link>
-        Page and clicking on Settings Tab.
+        and under the settings tab, turn off option to popup new messages
       </List.Content>
-    </List.Item>
-
-    <List.Item>
-      <Icon name="hand point right" />
-      Inside the menu,there is an setting named: Show New Message Popup?
-    </List.Item>
-
-    <List.Item>
-      <Icon name="hand point right" />
-      Just toggle the setting to disable/enable the Message Popup to appear.
     </List.Item>
   </List>
 );

@@ -52,7 +52,6 @@ io.on("connection", (socket) => {
         const receiverSocket = findConnectedUser(postByUserId);
 
         if (receiverSocket && like) {
-          // WHEN YOU WANT TO SEND DATA TO ONE PARTICULAR CLIENT
           io.to(receiverSocket.socketId).emit("newNotificationReceived", {
             name,
             profilePicUrl,
@@ -76,9 +75,7 @@ io.on("connection", (socket) => {
     const { newMsg, error } = await sendMsg(userId, msgSendToUserId, msg);
     const receiverSocket = findConnectedUser(msgSendToUserId);
 
-    // WHEN YOU WANT TO SEND MESSAGE TO A PARTICULAR SOCKET
-    if (receiverSocket)
-      io.to(receiverSocket.socketId).emit("newMsgReceived", { newMsg });
+    if (receiverSocket) io.to(receiverSocket.socketId).emit("newMsgReceived", { newMsg });
     else await setMsgToUnread(msgSendToUserId);
 
     !error && socket.emit("msgSent", { newMsg });
@@ -96,9 +93,7 @@ io.on("connection", (socket) => {
       const { newMsg, error } = await sendMsg(userId, msgSendToUserId, msg);
       const receiverSocket = findConnectedUser(msgSendToUserId);
 
-      // WHEN YOU WANT TO SEND MESSAGE TO A PARTICULAR SOCKET
-      if (receiverSocket)
-        io.to(receiverSocket.socketId).emit("newMsgReceived", { newMsg });
+      if (receiverSocket) io.to(receiverSocket.socketId).emit("newMsgReceived", { newMsg });
       else await setMsgToUnread(msgSendToUserId);
 
       !error && socket.emit("msgSentFromNotification");
@@ -123,6 +118,6 @@ nextApp.prepare().then(() => {
   server.listen(PORT, (err) => {
     if (err) throw err;
 
-    console.log("Server is up and running");
+    console.log("Server is up and running...");
   });
 });
