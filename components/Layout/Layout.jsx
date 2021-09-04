@@ -29,6 +29,7 @@ function Layout({ children, user }) {
 
   const messagesRoute = router.pathname === "/messages";
 
+  
   Router.onRouteChangeStart = () => nprogress.start();
   Router.onRouteChangeComplete = () => nprogress.done();
   Router.onRouteChangeError = () => nprogress.done();

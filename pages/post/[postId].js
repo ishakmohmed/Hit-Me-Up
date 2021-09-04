@@ -69,9 +69,9 @@ function PostPage({ post, errorLoading, user }) {
 
             <Card.Description
               style={{
-                fontSize: "1.25rem",
-                fontWeight: "bold",
-                color: "black",
+                fontSize: "1.1rem",
+                color: "gray",
+                marginTop: "2rem",
               }}
             >
               {post.text}
