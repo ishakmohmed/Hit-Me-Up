@@ -13,32 +13,32 @@ function SideMenu({ user: { email, username } }) {
       <List style={{ paddingTop: "1rem" }} selection>
         <Link href="/">
           <List.Item active={isActive("/")}>
-            <p>Home</p>
+            <p style={{ textAlign: "center" }}>Home</p>
           </List.Item>
         </Link>
         <br />
 
         <List.Item active={isActive("/messages")} as="a" href="/messages">
-          <p>Chat</p>
+          <p style={{ textAlign: "center" }}>Chat</p>
         </List.Item>
         <br />
 
         <Link href="/notifications">
           <List.Item active={isActive("/notifications")}>
-            <p>Alerts</p>
+            <p style={{ textAlign: "center" }}>Alerts</p>
           </List.Item>
         </Link>
         <br />
 
         <Link href={`/${username}`}>
           <List.Item active={router.query.username === username}>
-            <p>Profile</p>
+            <p style={{ textAlign: "center" }}>Profile</p>
           </List.Item>
         </Link>
         <br />
 
         <List.Item onClick={() => logoutUser(email)}>
-          <p>Logout</p>
+          <p style={{ textAlign: "center" }}>Logout</p>
         </List.Item>
       </List>
     </>

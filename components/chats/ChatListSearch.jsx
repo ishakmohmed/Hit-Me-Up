@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { List, Image, Search } from "semantic-ui-react";
+import { List, Image, Search, Segment } from "semantic-ui-react";
 import axios from "axios";
 import cookie from "js-cookie";
 import { useRouter } from "next/router";
@@ -76,23 +76,34 @@ function ChatListSearch({ chats, setChats }) {
   }, [text]);
 
   return (
-    <Search
-      onBlur={() => {
-        results.length > 0 && setResults([]);
-        loading && setLoading(false);
-        setText("");
-      }}
+    <Segment
+      color="red"
       style={{
-        margin: "3rem 0",
+        height: "5rem",
+        display: "flex",
+        alignItems: "center",
+        width: "17rem",
+        margin: "2rem"
       }}
-      loading={loading}
-      value={text}
-      resultRenderer={ResultRenderer}
-      results={results}
-      onSearchChange={handleChange}
-      minCharacters={1}
-      onResultSelect={(e, data) => addChat(data.result)}
-    />
+    >
+      <Search
+        onBlur={() => {
+          results.length > 0 && setResults([]);
+          loading && setLoading(false);
+          setText("");
+        }}
+        style={{
+          margin: "3rem 0",
+        }}
+        loading={loading}
+        value={text}
+        resultRenderer={ResultRenderer}
+        results={results}
+        onSearchChange={handleChange}
+        minCharacters={1}
+        onResultSelect={(e, data) => addChat(data.result)}
+      />
+    </Segment>
   );
 }
 

@@ -33,7 +33,8 @@ function CreatePost({ user, setPosts }) {
     height: "200px",
     width: "200px",
     margin: "1rem",
-    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+    borderRadius: "0.25rem",
+    boxShadow: "rgba(0, 0, 0, 0.24) 0px 0.5px 1.5px",
     paddingTop: media === null && "60px",
     cursor: "pointer",
     borderColor: highlighted ? "green" : "black",
@@ -133,7 +134,7 @@ function CreatePost({ user, setPosts }) {
             }}
           >
             {media === null ? (
-              <Icon name="image" size="big" />
+              <Icon name="image" size="big" color="blue" />
             ) : (
               <Image
                 style={{ height: "150px", width: "150px" }}
@@ -169,7 +170,7 @@ function CreatePost({ user, setPosts }) {
         <Divider />
       </center>
     </>
-  ); 
+  );
 }
 
 export default CreatePost;
