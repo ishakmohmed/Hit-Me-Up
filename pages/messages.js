@@ -5,8 +5,6 @@ import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import {
   Segment,
-  Header,
-  Divider,
   Comment,
   Grid,
   Button,
