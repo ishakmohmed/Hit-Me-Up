@@ -32,11 +32,11 @@ Hit Me Up is a full stack web application built using Next.js, Socket.io, Node.j
 
 ### [6] How To Run The Project Locally
 If you want to just see the live version, refer point 1. Otherwise keep reading. Fork this repository. Add a `.env` file in your project with the following content.
-  MONGO_URI=mongodb://localhost:27017/temporaryDB
-  JWT_SECRET_KEY=fakekey
-  SENDGRID_API=
-  NODE_ENV=development
-  PORT=3000
+    MONGO_URI=mongodb://localhost:27017/temporaryDB
+    JWT_SECRET_KEY=fakekey
+    SENDGRID_API=
+    NODE_ENV=development
+    PORT=3000
 You need to get an API key from SendGrid API. Google it. I don't want to make this README file look long and complicated. Also, in `next.config.js`, replace the CLOUDINARY_URL with your own Cloudinary URL which you need to get from Cloudinary. If you don't know how, Google it. ;) Install all dependencies and run the development server with `npm run dev`.
 
 ### [7] Hosting
