@@ -38,7 +38,7 @@ If you want to just see the live version, refer point 1. Otherwise keep reading.
     SENDGRID_API=
     NODE_ENV=development
     PORT=3000
-You need to get an API key from SendGrid API and add the value to the respective key in the `.env` file. Google it. I don't want to make this README file look long and complicated. Also, in `next.config.js`, replace the CLOUDINARY_URL with your own Cloudinary URL which you need to get from Cloudinary. If you don't know how, Google it. ;) Install all dependencies and run the development server with `npm run dev`.
+You need to get an API key from SendGrid API and add the value to the respective key in the `.env` file. If you don't know how, Google it. I don't want to make this README file look long and complicated. Also, in `next.config.js`, replace the CLOUDINARY_URL with your own Cloudinary URL which you need to get from Cloudinary. If you don't know how, Google it. ;) Install all dependencies and run the development server with `npm run dev`.
 
 ### [7] Hosting
 * Frontend: Heroku
