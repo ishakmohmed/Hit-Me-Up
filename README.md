@@ -31,7 +31,7 @@ Hit Me Up is a full stack web application built using Next.js, Socket.io, Node.j
 ![Mohmed Ishak](https://user-images.githubusercontent.com/52876913/136593583-d093d16b-cbe9-4a8e-88db-77e34a3d581d.png)
 
 ### [6] How To Run The Project Locally
-If you want to just see the live version, refer point 1. Otherwise keep reading. Fork this repository. Add a `.env` file in your project with the following content.
+If you want to just see the live version, refer point 1. Otherwise keep reading. Make sure you have got Node.js runtime environment and MongoDB installed on your machine. Fork this repository. Add a `.env` file in your project with the following content.
     
     MONGO_URI=mongodb://localhost:27017/temporaryDB
     JWT_SECRET_KEY=fakekey
