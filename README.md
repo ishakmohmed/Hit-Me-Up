@@ -13,6 +13,7 @@ Hit Me Up is a full stack web application built using Next.js, Socket.io, Node.j
 ### [4] Technologies Used/Features Implemented
 * Next.js
 * Axios
+* Node.js
 * Express.js
 * JWT
 * MongoDB
