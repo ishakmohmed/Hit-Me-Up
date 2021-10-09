@@ -15,6 +15,7 @@ Hit Me Up is a full stack web application built using Next.js, Socket.io, Node.j
 * Axios
 * Express.js
 * JWT
+* MongoDB
 * Mongoose
 * SendGrid API (for password reset feature where link to reset password would be mailed to users who forgot their passwords)
 * React
