@@ -8,7 +8,7 @@ If you're in a hurry, you can either scroll down to see the screenshots and glan
 * Password: Masteruser975
 
 ### [3] Introduction
-Hit Me Up is a full stack web application built using Next.js, Socket.io, Node.js and other cool technologies and APIs. It is a social media app and the main tech in this project are Next.js and Socket.IO which is used to create bidirectional communication between users to implement chat and notifications. It has all the typical features you'd see in a social media such as resetting password, uploading a pic (even cropping them before uploading), commenting, liking, and so on. All the features aren't discussed in this README as it will get long and complicated. Check it out to learn more.
+Hit Me Up is a full stack web application built using Next.js, Socket.io, Node.js and other cool technologies and APIs. It is a social media app and the main tech in this project are Next.js for server-side rendering and Socket.IO which is used to create bidirectional communication between users to implement chat and notifications. It has all the typical features you'd see in a social media such as resetting password, uploading a pic (even cropping them before uploading), commenting, liking, and so on. All the features aren't discussed in this README as it will get long and complicated. Check it out to learn more.
 
 ### [4] Technologies Used/Features Implemented
 * Next.js
